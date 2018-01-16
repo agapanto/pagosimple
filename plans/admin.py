@@ -1,3 +1,11 @@
+"""Plans app models."""
 from django.contrib import admin
+from .models import (
+    Plan,
+    PlanInstance,
+    RenewalOption,
+)
 
-# Register your models here.
+admin.site.register(Plan)
+admin.site.register(PlanInstance)
+admin.site.register(RenewalOption)
