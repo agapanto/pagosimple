@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Project specific modules
     'django.contrib.postgres.fields',
+    'django_extensions',
     'rest_framework_apicontrol',
 ]
 
