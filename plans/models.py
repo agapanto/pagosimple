@@ -124,7 +124,7 @@ class RenewalOption(TrackableModelMixin, UniqueIDModelMixin):
     renewal_period_type = models.CharField(
         choices=RENEWAL_PERIOD_TYPE_CHOICES,
         default='months',
-        max_length=100
+        max_length=12  # 12 for MILLENIALS
     )
     plan = models.ForeignKey(
         Plan,
