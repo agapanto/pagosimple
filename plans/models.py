@@ -74,7 +74,20 @@ class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         on_delete=models.CASCADE
     )
 
-    def set_renewal_datetime(self, period_count, period_type):
+    def apply_renewal_option(self, obj, renewal_option, commit=True):
+        """Apply an specific renewal_option to the current instance."""
+        self.set_renewal_datetime(
+            period_count=renewal_option.period_type,
+            period_type=renewal_option.period_type,
+            commit=False
+        )
+
+        if commit:
+            obj.save()
+
+    def set_renewal_datetime(self, obj, period_count, period_type,
+                             commit=True):
+        """Set an arbitrary renewal_datetime."""
         old_datetime = self.renewal_datetime
 
         parameters = {
