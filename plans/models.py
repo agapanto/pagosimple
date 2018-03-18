@@ -8,6 +8,8 @@ from django.contrib.postgres.fields import (
     JSONField,
 )
 from rest_framework_apicontrol.mixins import (
+    ActiveModelMixin,
+    EnabledModelMixin,
     PerAppModelMixin,
     TrackableModelMixin,
     UniqueIDModelMixin,
@@ -31,6 +33,10 @@ logger = logging.getLogger(__name__)
 
 
 class Plan(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
+class Plan(EnabledModelMixin,
+           PerAppModelMixin,
+           TrackableModelMixin,
+           UniqueIDModelMixin):
     """
     Plan model.
 
@@ -42,9 +48,6 @@ class Plan(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH
     )
-    enabled = models.BooleanField(
-        default=False
-    )
 
     class Meta:
         unique_together = (("code", "app"),)
@@ -53,16 +56,13 @@ class Plan(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         return str(self.name)+" - "+str(self.created_at)
 
 
-class PlanInstance(TrackableModelMixin, UniqueIDModelMixin):
+class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """
     Plan Instance model.
 
     Represents an specific Plan instance for a user account.
     """
 
-    active = models.BooleanField(
-        default=False
-    )
     renewal_datetime = models.DateTimeField()
 
     metadata = JSONField()
@@ -98,7 +98,7 @@ class PlanInstance(TrackableModelMixin, UniqueIDModelMixin):
         return str(self.id)
 
 
-class RenewalOption(TrackableModelMixin, UniqueIDModelMixin):
+class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """
     Renewal Option model.
 
@@ -111,9 +111,6 @@ class RenewalOption(TrackableModelMixin, UniqueIDModelMixin):
     )
     discount = models.FloatField(
         default=0
-    )
-    active = models.BooleanField(
-        default=False
     )
     renewal_period_count = models.IntegerField(
         default=1
