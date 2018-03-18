@@ -105,3 +105,6 @@ ENV/
 !*/migrations/__init__.py
 db.sqlite3
 .env
+
+# Complementary apps
+rest_framework_apicontrol
