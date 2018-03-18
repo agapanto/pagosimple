@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres.fields',
     'django_extensions',
     'rest_framework_apicontrol',
+    'accounts',
     'plans',
 ]
 
