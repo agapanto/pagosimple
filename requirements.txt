@@ -1,3 +1,4 @@
+python-dateutil
 django
 rest_framework_apicontrol
 psycopg2
