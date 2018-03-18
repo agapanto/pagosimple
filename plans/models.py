@@ -32,7 +32,28 @@ RENEWAL_PERIOD_TYPE_CHOICES = (
 logger = logging.getLogger(__name__)
 
 
-class Plan(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
+class PlanGroup(PerAppModelMixin,
+                TrackableModelMixin,
+                UniqueIDModelMixin):
+    """
+    PlanGroup model.
+
+    Useful to manage few RenewalOptions in database and reuse it.
+    """
+    code = models.CharField(
+        max_length=CODE_FIELD_MAX_LENGTH
+    )
+    name = models.CharField(
+        max_length=NAME_FIELD_MAX_LENGTH
+    )
+
+    class Meta:
+        unique_together = (("code", "app"),)
+
+    def __str__(self):
+        return str(self.name)+" - "+str(self.created_at)
+
+
 class Plan(EnabledModelMixin,
            PerAppModelMixin,
            TrackableModelMixin,
@@ -133,8 +154,8 @@ class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         default='months',
         max_length=12  # 12 for MILLENIALS
     )
-    plan = models.ForeignKey(
-        Plan,
+    plan_group = models.ForeignKey(
+        PlanGroup,
         blank=True,
         null=True,
         on_delete=models.CASCADE
