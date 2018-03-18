@@ -8,6 +8,7 @@ from django.contrib.postgres.fields import (
     JSONField,
 )
 from rest_framework_apicontrol.mixins import (
+    PerAppModelMixin,
     TrackableModelMixin,
     UniqueIDModelMixin,
 )
@@ -29,7 +30,7 @@ RENEWAL_PERIOD_TYPE_CHOICES = (
 logger = logging.getLogger(__name__)
 
 
-class Plan(TrackableModelMixin, UniqueIDModelMixin):
+class Plan(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """
     Plan model.
 
@@ -43,10 +44,6 @@ class Plan(TrackableModelMixin, UniqueIDModelMixin):
     )
     enabled = models.BooleanField(
         default=False
-    )
-    app = models.ForeignKey(
-        App,
-        on_delete=models.CASCADE
     )
 
     class Meta:
