@@ -12,6 +12,8 @@ from rest_framework_apicontrol.mixins import (
     UniqueIDModelMixin,
 )
 from rest_framework_apicontrol.models import (
+    CODE_FIELD_MAX_LENGTH,
+    NAME_FIELD_MAX_LENGTH,
     App,
 )
 
@@ -34,10 +36,10 @@ class Plan(TrackableModelMixin, UniqueIDModelMixin):
     Represents a Plan in an specific app.
     """
     code = models.CharField(
-        max_length=100
+        max_length=CODE_FIELD_MAX_LENGTH
     )
     name = models.CharField(
-        max_length=100
+        max_length=NAME_FIELD_MAX_LENGTH
     )
     enabled = models.BooleanField(
         default=False
@@ -108,7 +110,7 @@ class RenewalOption(TrackableModelMixin, UniqueIDModelMixin):
     """
 
     name = models.CharField(
-        max_length=100
+        max_length=NAME_FIELD_MAX_LENGTH
     )
     discount = models.FloatField(
         default=0
