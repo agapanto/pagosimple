@@ -1,0 +1,5 @@
+export POSTGRESQL_NAME='pagosimple'
+export POSTGRESQL_USER='pagosimple'
+export POSTGRESQL_PASSWORD='pagosimple'
+export POSTGRESQL_HOST='127.0.0.1'
+export POSTGRESQL_PORT='5432'
