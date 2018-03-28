@@ -3,3 +3,4 @@ django
 rest_framework_apicontrol
 psycopg2
 django-extensions
+honcho
