@@ -1,9 +1,7 @@
+"""plans app models."""
 import logging
-import uuid
 from dateutil.relativedelta import relativedelta
-from django.conf import settings
 from django.db import models
-from django.utils import timezone
 from django.contrib.postgres.fields import (
     JSONField,
 )
@@ -17,7 +15,6 @@ from rest_framework_apicontrol.mixins import (
 from rest_framework_apicontrol.models import (
     CODE_FIELD_MAX_LENGTH,
     NAME_FIELD_MAX_LENGTH,
-    App,
 )
 
 
@@ -40,6 +37,7 @@ class PlanGroup(PerAppModelMixin,
 
     Useful to manage few RenewalOptions in database and reuse it.
     """
+
     code = models.CharField(
         max_length=CODE_FIELD_MAX_LENGTH
     )
@@ -48,9 +46,16 @@ class PlanGroup(PerAppModelMixin,
     )
 
     class Meta:
+        """
+        Set contraints to only allow the following.
+
+        - One account PlanGroup code per App
+        """
+
         unique_together = (("code", "app"),)
 
     def __str__(self):
+        """Return the class instance item name in django admin."""
         return str(self.name)+" - "+str(self.created_at)
 
 
@@ -63,6 +68,7 @@ class Plan(EnabledModelMixin,
 
     Represents a Plan in an specific app.
     """
+
     code = models.CharField(
         max_length=CODE_FIELD_MAX_LENGTH
     )
@@ -71,9 +77,16 @@ class Plan(EnabledModelMixin,
     )
 
     class Meta:
+        """
+        Set contraints to only allow the following.
+
+        - One account Plan code per App
+        """
+
         unique_together = (("code", "app"),)
 
     def __str__(self):
+        """Return the class instance item name in django admin."""
         return str(self.name)+" - "+str(self.created_at)
 
 
@@ -129,6 +142,7 @@ class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         )
 
     def __str__(self):
+        """Return the class instance item name in django admin."""
         return str(self.id)
 
 
@@ -140,6 +154,9 @@ class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     based on the Plan price.
     """
 
+    code = models.CharField(
+        max_length=CODE_FIELD_MAX_LENGTH
+    )
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH
     )
@@ -162,4 +179,5 @@ class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     )
 
     def __str__(self):
+        """Return the class instance item name in django admin."""
         return str(self.name)+" - "+str(self.created_at)
