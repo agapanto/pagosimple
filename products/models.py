@@ -61,7 +61,7 @@ class Product(BaseProduct):
         """
         Set contraints to only allow the following.
 
-        - One account Product code per App
+        - One Product code per App
         """
 
         unique_together = (("code", "app"),)
@@ -87,7 +87,7 @@ class ProductVariant(BaseProduct):
         """
         Set contraints to only allow the following.
 
-        - One account Product code per App
+        - One ProductVariant code per App
         """
 
         unique_together = (("code", "app"),)
