@@ -1,6 +1,7 @@
 python-dateutil
 django
+django-extensions
 rest_framework_apicontrol
-psycopg2
+psycopg2-binary
 django-extensions
 honcho
