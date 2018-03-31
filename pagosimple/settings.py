@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'plans',
     'products',
     'orders',
+    # pagosimple Frontend app
+    'pagosimple_frontend',
 ]
 
 MIDDLEWARE = [
