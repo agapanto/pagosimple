@@ -2,6 +2,7 @@
 import logging
 # from dateutil.relativedelta import relativedelta
 from django.db import models
+from django.utils import timezone
 # from django.contrib.postgres.fields import (
 #     JSONField,
 # )
@@ -91,6 +92,39 @@ class ProductVariant(BaseProduct):
         """
 
         unique_together = (("code", "app"),)
+
+    def __str__(self):
+        """Return the class instance item name in django admin."""
+        return str(self.name)+" - "+str(self.created_at)
+
+
+class Stock(PerAppModelMixin,
+            TrackableModelMixin,
+            UniqueIDModelMixin):
+    """
+    Stock model.
+
+    Represents the stock of a ProductVariant in an specific app.
+    """
+
+    product_variant = models.ForeignKey(
+        ProductVariant,
+        on_delete=models.CASCADE
+    )
+    stock = models.IntegerField()
+    valid_to = models.DateTimeField(
+        default=timezone.now,
+        help_text='Limit DateTime in which the Stock instance \'ll be valid.'
+    )
+
+    class Meta:
+        """
+        Set contraints to only allow the following.
+
+        - One Stock per product_variant per App
+        """
+
+        unique_together = (("product_variant", "app"),)
 
     def __str__(self):
         """Return the class instance item name in django admin."""
