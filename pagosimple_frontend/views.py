@@ -15,7 +15,7 @@ def index(request, *args, **kwargs):
     template = loader.get_template('index.html')
 
     context = {
-        'message': 'hello world pagosimple',
+        'message': 'Welcome to pagosimple',
     }
 
     return HttpResponse(template.render(context, request))
