@@ -133,3 +133,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# After login, the user is redirected to pagosimple_frontend dashboard
+LOGIN_REDIRECT_URL = 'dashboard'
