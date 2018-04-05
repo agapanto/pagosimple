@@ -3,5 +3,6 @@ django
 django-extensions
 rest_framework_apicontrol
 psycopg2-binary
+django-debug-toolbar
 django-extensions
 honcho

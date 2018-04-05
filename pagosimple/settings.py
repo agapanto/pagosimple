@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     # Project specific modules
     'django.contrib.postgres.fields',
     'django_extensions',
+    'debug_toolbar',
+    # Security & multi-app management
     'rest_framework_apicontrol',
+    # Project apps
     'accounts',
     'plans',
     'products',
@@ -51,6 +54,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -137,3 +141,6 @@ STATIC_URL = '/static/'
 
 # After login, the user is redirected to pagosimple_frontend dashboard
 LOGIN_REDIRECT_URL = 'dashboard'
+
+# Django Debug toolbar
+INTERNAL_IPS = ['127.0.0.1']
