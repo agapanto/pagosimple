@@ -29,3 +29,13 @@ def dashboard_brief(request, *args, **kwargs):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+def app_detail(request, *args, **kwargs):
+    """It is the main view of the dashboard."""
+    template = loader.get_template('dashboard/apps/detail.html')
+
+    context = {
+    }
+
+    return HttpResponse(template.render(context, request))
