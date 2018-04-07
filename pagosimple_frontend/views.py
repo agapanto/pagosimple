@@ -6,6 +6,7 @@ from django.http import (
     # HttpResponseRedirect,
 )
 from django.template import loader
+from django.views import View
 
 logger = logging.getLogger(__name__)
 
@@ -21,21 +22,23 @@ def index(request, *args, **kwargs):
     return HttpResponse(template.render(context, request))
 
 
-def dashboard_brief(request, *args, **kwargs):
-    """It is the main view of the dashboard."""
-    template = loader.get_template('dashboard/brief.html')
+class DashboardBriefView(View):
+    def get(self, request, *args, **kwargs):
+        """It is the main view of the dashboard."""
+        template = loader.get_template('dashboard/brief.html')
 
-    context = {
-    }
+        context = {
+        }
 
-    return HttpResponse(template.render(context, request))
+        return HttpResponse(template.render(context, request))
 
 
-def app_detail(request, *args, **kwargs):
-    """It is the main view of the dashboard."""
-    template = loader.get_template('dashboard/apps/detail.html')
+class DashboardAppView(View):
+    def get(self, request, *args, **kwargs):
+        """It is the main view of the dashboard."""
+        template = loader.get_template('dashboard/apps/detail.html')
 
-    context = {
-    }
+        context = {
+        }
 
-    return HttpResponse(template.render(context, request))
+        return HttpResponse(template.render(context, request))
