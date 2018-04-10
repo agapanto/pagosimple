@@ -7,6 +7,9 @@ from django.http import (
 )
 from django.template import loader
 from django.views import View
+from rest_framework_apicontrol.models import (
+    App,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +41,26 @@ class DashboardAppView(View):
         """It is the main view of the dashboard."""
         template = loader.get_template('dashboard/apps/detail.html')
 
+        app_unique_id = kwargs.get('app_unique_id')
+
         context = {
+            'app_unique_id': app_unique_id,
+            'app': App.objects.get(unique_id=app_unique_id)
+        }
+
+        return HttpResponse(template.render(context, request))
+
+
+class DashboardAppPaymentsView(View):
+    def get(self, request, *args, **kwargs):
+        """It is the main view of the dashboard."""
+        template = loader.get_template('dashboard/apps/payments/list.html')
+
+        app_unique_id = kwargs.get('app_unique_id')
+
+        context = {
+            'app_unique_id': app_unique_id,
+            'app': App.objects.get(unique_id=app_unique_id)
         }
 
         return HttpResponse(template.render(context, request))
