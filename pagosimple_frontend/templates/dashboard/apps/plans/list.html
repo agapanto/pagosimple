@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+<!-- {% load i18n %} -->
+<!-- {% load static %} -->
+{% block css %}
+    {{ block.super }}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> -->
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">
+        REUSABLE BREADCRUMB HERE
+      </a>
+    </li>
+  </ol>
+
+  <div class="row">
+
+    <div class="col-3">
+
+      <div class="card border-info">
+        <!-- <div class="card-header">
+          APP
+        </div> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ app.name }}
+          </h5>
+          <div class="card-text">
+            <p>
+              With supporting text below as a natural lead-in to additional content.
+            </p>
+          </div>
+          <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">
+            Back
+          </a>
+          <a href="#" class="btn btn-secondary">
+            CONFIG
+            <!-- <i class="fa fa-cog"></i> -->
+          </a>
+
+        </div>
+        <div class="card-footer text-muted">
+          3 days remaining
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-9">
+
+      <div class="row mb-4">
+
+        <div class="col-12">
+
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'app_detail_payments' app_unique_id=app_unique_id%}">
+                payments
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                clients
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'app_detail_plan_list' app_unique_id=app_unique_id %}">
+                plans
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">
+                products
+              </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+
+          <table class="table">
+            <thead>
+              <tr class="table-light">
+                <th scope="col" class="text-center">
+                  enabled
+                </th>
+                <th scope="col">
+                  code
+                </th>
+                <th scope="col">
+                  name
+                </th>
+                <th scope="col">
+                  price
+                </th>
+                <th scope="col">
+                  clients
+                </th>
+                <th scope="col">
+                  updated at
+                </th>
+                <th scope="col">
+                  actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for plan in plans %}
+              <tr>
+                <td class="text-center">
+                  {% if plan.enabled %}
+                    <i class="fa fa-check"></i>
+                  {% else %}
+                    <i class="fa fa-times"></i>
+                  {% endif %}
+                </td>
+                <td>
+                  {{ plan.code }}
+                </td>
+                <td>
+                  <a href="{% url 'app_detail_plan_detail' app_unique_id=app_unique_id plan_unique_id=plan.unique_id %}">
+                    {{ plan.name }}
+                  </a>
+                </td>
+                <td>
+                  {{ plan.price }}
+                  $ 10000
+                </td>
+                <td>
+                  32
+                </td>
+                <td>
+                  {{ plan.updated_at }}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-info btn-sm disabled">
+                    + info
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

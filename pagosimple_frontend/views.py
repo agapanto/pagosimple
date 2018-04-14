@@ -60,6 +60,22 @@ class DashboardAppPaymentsView(View):
         template = loader.get_template('dashboard/apps/payments/list.html')
 
         app_unique_id = kwargs.get('app_unique_id')
+class DashboardAppPlanListView(View):
+    def get(self, request, *args, **kwargs):
+        """It is the main view of the dashboard."""
+        template = loader.get_template('dashboard/apps/plans/list.html')
+
+        app_unique_id = kwargs.get('app_unique_id')
+        app = App.objects.get(unique_id=app_unique_id)
+        plans = Plan.objects.filter(app=app)
+
+        context = {
+            'app_unique_id': app_unique_id,
+            'app': app,
+            'plans': plans
+        }
+
+        return HttpResponse(template.render(context, request))
 
 
 class DashboardAppPlanDetailView(View):
