@@ -12,111 +12,56 @@
 
 {% block content %}
 
-  <ol class="breadcrumb">
-    <li class="">YOU ARE IN: &nbsp</li>
-    <li class="breadcrumb-item">
-      <a href="{% url 'dashboard' %}">DASHBOARD</a>
-    </li>
-    <li class="breadcrumb-item">
-      <a href="#">CURRENT_APP</a>
-    </li>
-    <!-- <li class="breadcrumb-item"><a href="#">(CURRENT_APP)</a></li>
-    <li class="breadcrumb-item"><a href="#">MY CLIENTS</a></li>
-    <li class="breadcrumb-item active">12345678-9</li> -->
-  </ol>
-
-  <!-- <div class="alert alert-dismissible alert-info">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
-  </div> -->
-
-  <!-- <div class="row text-center">
-    <div class="col-12">
-      <h1>
-        planeta agroecologico dashboard
-      </h1>
-    </div>
-  </div> -->
+  {% include 'components/breadcrumb.html' %}
 
   <div class="row">
 
     <div class="col-3">
 
-      <div class="card text-center">
-        <!-- <div class="card-header">
-          APP
-        </div> -->
-        <div class="card-body">
-          <h5 class="card-title">{{ app.name }}</h5>
-          <div class="card-text">
-            <p>
-              With supporting text below as a natural lead-in to additional content.
-            </p>
-          </div>
-          <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">
-            Back
-          </a>
-          <a href="#" class="btn btn-secondary">
-            CONFIG
-            <i class="fa fa-cog"></i>
-          </a>
-
-        </div>
-        <div class="card-footer text-muted">
-          3 days remaining
-        </div>
-      </div>
+      {% include 'components/app_card.html' %}
 
     </div>
 
     <div class="col-9">
 
-      <div class="row">
+      {% include 'components/admin_navbar.html' %}
 
+      <div class="row">
         <div class="col-12">
 
-          <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'app_detail_payments' app_unique_id=app_unique_id%}">
+          <div class="jumbotron">
+            <h1 class="display-3">
+              Control Panel
+            </h1>
+            <p class="lead">
+              This control panel allows you to setup all your clients, plans & products, and also will show you all the payments done.
+            </p>
+            <!-- <hr class="my-4"> -->
+            <!-- <p>
+              It is a resume that we have for you about the current app.
+            </p> -->
+
+            <!-- <div class="row">
+              <div class="col-3">
                 payments
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+              </div>
+              <div class="col-3">
                 clients
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
+              </div>
+              <div class="col-3">
                 plans
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">
+              </div>
+              <div class="col-3">
                 products
+              </div>
+            </div> -->
+            <!-- <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">
+                Learn more
               </a>
-            </li>
-          </ul>
+            </p> -->
+          </div>
 
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-4">
-          <h3>
-            [APP DETAIL]
-          </h3>
-        </div>
-        <div class="col-4">
-          <h3>
-            [APP DETAIL]
-          </h3>
-        </div>
-        <div class="col-4">
-          <h3>
-            [APP DETAIL]
-          </h3>
         </div>
       </div>
 
