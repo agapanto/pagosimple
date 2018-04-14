@@ -11,6 +11,7 @@ from .views import (
     DashboardBriefView,
     DashboardAppView,
     DashboardAppPaymentsView,
+    DashboardAppPlanDetailView,
 )
 
 
@@ -45,5 +46,10 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/payments',
         DashboardAppPaymentsView.as_view(),
         name='app_detail_payments'
+    ),
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>',
+        DashboardAppPlanDetailView.as_view(),
+        name='app_detail_plan_detail'
     ),
 ]

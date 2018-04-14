@@ -10,6 +10,9 @@ from django.views import View
 from rest_framework_apicontrol.models import (
     App,
 )
+from plans.models import (
+    Plan,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -58,9 +61,27 @@ class DashboardAppPaymentsView(View):
 
         app_unique_id = kwargs.get('app_unique_id')
 
+
+class DashboardAppPlanDetailView(View):
+    def get(self, request, *args, **kwargs):
+        """It is the main view of the dashboard."""
+        template = loader.get_template('dashboard/apps/plans/detail.html')
+
+        app_unique_id = kwargs.get('app_unique_id')
+        plan_unique_id = kwargs.get('plan_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+        plans = Plan.objects.filter(app=app)
+        plan = Plan.objects.get(unique_id=plan_unique_id)
+
         context = {
             'app_unique_id': app_unique_id,
-            'app': App.objects.get(unique_id=app_unique_id)
+            'app': app,
+            'plans': plans,
+            'plan': plan,
+            'plan_instances': plan.planinstance_set.all().order_by(
+                '-created_at'
+            )
         }
 
         return HttpResponse(template.render(context, request))

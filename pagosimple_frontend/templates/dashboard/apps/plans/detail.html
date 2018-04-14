@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+<!-- {% load i18n %} -->
+<!-- {% load static %} -->
+{% block css %}
+    {{ block.super }}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> -->
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">
+        REUSABLE BREADCRUMB HERE
+      </a>
+    </li>
+  </ol>
+
+  <div class="row">
+
+    <div class="col-3">
+
+      <div class="card border-info">
+        <!-- <div class="card-header">
+          PLAN
+        </div> -->
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ plan.name }}
+          </h5>
+          <!-- <div class="card-text">
+            <p>
+              With supporting text below as a natural lead-in to additional content.
+            </p>
+          </div> -->
+          <a href="{% url 'dashboard' %}" class="btn btn-outline-primary">
+            Back
+          </a>
+
+        </div>
+        <div class="card-footer text-muted">
+          {{ plan_instances.count }} plan instances
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-9">
+
+      <div class="row">
+        <div class="col-12">
+
+          <table class="table">
+            <thead>
+              <tr class="table-light">
+                <th scope="col">
+                  active
+                </th>
+                <th scope="col">
+                  account
+                </th>
+                <th scope="col">
+                  created at
+                </th>
+                <th scope="col">
+                  renewal datetime
+                </th>
+                <th scope="col">
+                  updated at
+                </th>
+                <th scope="col">
+                  actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for plan_instance in plan_instances %}
+              <tr>
+                <td class="text-center">
+                  {% if plan_instance.active %}
+                    <i class="fa fa-check"></i>
+                  {% else %}
+                    <i class="fa fa-times"></i>
+                  {% endif %}
+                </td>
+                <td>
+                  <a href="#">
+                    {{ plan_instance.account }}
+                    mcueto@github.com
+                  </a>
+                </td>
+                <td>
+                  {{ plan_instance.created_at }}
+                </td>
+                <td>
+                  {{ plan_instance.renewal_datetime }}
+                </td>
+                <td>
+                  {{ plan_instance.updated_at }}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-info btn-sm disabled">
+                    + info
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}
