@@ -10,7 +10,7 @@ from .views import (
     index,
     DashboardBriefView,
     DashboardAppView,
-    DashboardAppPaymentsView,
+    DashboardAppPaymentListView,
     DashboardAppPlanListView,
     DashboardAppPlanDetailView,
 )
@@ -45,7 +45,7 @@ urlpatterns = [
     ),
     path(
         'dashboard/apps/<uuid:app_unique_id>/payments',
-        DashboardAppPaymentsView.as_view(),
+        DashboardAppPaymentListView.as_view(),
         name='app_detail_payments'
     ),
     path(
