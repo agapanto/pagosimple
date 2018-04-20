@@ -1,0 +1,59 @@
+{% load addcss %}
+
+<form action="#" method="post">
+
+  <div class="row">
+    <div class="col-12">
+      <input type="submit" class="btn btn-primary float-right mb-4" href="#" value="SAVE CHANGES">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      {% csrf_token %}
+
+      {# Include the hidden fields #}
+      {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+
+      <fieldset>
+        <legend>
+          Form title
+        </legend>
+
+        {# Include the visible fields #}
+        {% for field in form.visible_fields %}
+
+          {% if field.field.widget.input_type == 'text' %}
+          <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field | addcss:'form-control' }}
+          </div>
+
+          {% elif field.field.widget.input_type == 'checkbox' %}
+          <div class="form-group">
+            {{ field.errors }}
+            <div class="form-check">
+              <label class="form-check-label">
+                {{ field | addcss:'form-check-input' }}
+                {{ field.label }}
+              </label>
+            </div>
+          </div>
+
+          {% else %}
+          <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field | addcss:'form-control' }}
+          </div>
+          {% endif %}
+
+        {% endfor %}
+
+      </fieldset>
+
+    </div>
+  </div>
+
+</form>
