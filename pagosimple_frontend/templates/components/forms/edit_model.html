@@ -4,12 +4,13 @@
 
   <div class="row">
     <div class="col-12">
-      <input type="submit" class="btn btn-primary float-right mb-4" href="#" value="SAVE CHANGES">
+      <input type="submit" class="btn btn-secondary float-left mb-4" href="{{ submit_url }}" value="BACK">
+      <input type="submit" class="btn btn-primary float-right mb-4" href="{{ submit_url }}" value="SAVE CHANGES">
     </div>
   </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-6 offset-3">
       {% csrf_token %}
 
       {# Include the hidden fields #}
@@ -18,8 +19,8 @@
       {% endfor %}
 
       <fieldset>
-        <legend>
-          Form title
+        <legend class="text-center" style="font-weight: bold;">
+          {{ form_title | upper }}
         </legend>
 
         {# Include the visible fields #}
