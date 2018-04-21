@@ -19,10 +19,10 @@ class PlanForm(ModelForm):
     class Meta:
         model = Plan
         fields = [
-            'enabled',
             # 'app',
             # 'created_at',
             # 'updated_at',
             'code',
             'name',
+            'enabled',
         ]
