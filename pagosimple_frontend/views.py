@@ -7,11 +7,17 @@ from django.http import (
 )
 from django.template import loader
 from django.views import View
+from django.views.generic import (
+    UpdateView,
+)
 from rest_framework_apicontrol.models import (
     App,
 )
 from plans.models import (
     Plan,
+)
+from plans.forms import (
+    PlanForm,
 )
 
 logger = logging.getLogger(__name__)
@@ -111,3 +117,31 @@ class DashboardAppPlanDetailView(View):
         }
 
         return HttpResponse(template.render(context, request))
+
+
+class DashboardAppPlanEditView(UpdateView):
+    template_name = 'dashboard/apps/plans/edit.html'
+    form_class = PlanForm
+    model = Plan
+
+    def get_object(self, **kwargs):
+        plan_unique_id = self.kwargs.get('plan_unique_id')
+
+        return self.model.objects.get(unique_id=plan_unique_id)
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardAppPlanEditView, self).get_context_data(
+            **kwargs
+        )
+
+        app_unique_id = self.kwargs.get('app_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+
+        context['app_unique_id'] = app_unique_id
+        context['app'] = app
+        context['plan_instances'] = self.get_object().planinstance_set.all().order_by(
+            '-created_at'
+        )
+
+        return context
