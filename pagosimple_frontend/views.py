@@ -8,7 +8,12 @@ from django.http import (
 from django.template import loader
 from django.views import View
 from django.views.generic import (
+    DetailView,
+    FormView,
+    CreateView,
     UpdateView,
+    DeleteView,
+    ListView,
 )
 from rest_framework_apicontrol.models import (
     App,
@@ -51,10 +56,11 @@ class DashboardAppView(View):
         template = loader.get_template('dashboard/apps/detail.html')
 
         app_unique_id = kwargs.get('app_unique_id')
+        app = App.objects.get(unique_id=app_unique_id)
 
         context = {
             'app_unique_id': app_unique_id,
-            'app': App.objects.get(unique_id=app_unique_id)
+            'app': app
         }
 
         return HttpResponse(template.render(context, request))
