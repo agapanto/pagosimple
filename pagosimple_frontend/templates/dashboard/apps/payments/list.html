@@ -12,31 +12,7 @@
 
 {% block content %}
 
-  <ol class="breadcrumb">
-    <li class="">YOU ARE IN: &nbsp</li>
-    <li class="breadcrumb-item">
-      <a href="{% url 'dashboard' %}">DASHBOARD</a>
-    </li>
-    <li class="breadcrumb-item">
-      <a href="#">CURRENT_APP</a>
-    </li>
-    <!-- <li class="breadcrumb-item"><a href="#">(CURRENT_APP)</a></li>
-    <li class="breadcrumb-item"><a href="#">MY CLIENTS</a></li>
-    <li class="breadcrumb-item active">12345678-9</li> -->
-  </ol>
-
-  <!-- <div class="alert alert-dismissible alert-info">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <strong>Heads up!</strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
-  </div> -->
-
-  <!-- <div class="row text-center">
-    <div class="col-12">
-      <h1>
-        planeta agroecologico dashboard
-      </h1>
-    </div>
-  </div> -->
+  {% include 'components/breadcrumb.html' %}
 
   <div class="row">
 
@@ -51,9 +27,9 @@
       <div class="row">
         <div class="col-12">
 
-          <table class="table table-hover table-striped table-bordered">
+          <table class="table">
             <thead>
-              <tr>
+              <tr class="table-light">
                 <th scope="col">Type</th>
                 <th scope="col">Column heading</th>
                 <th scope="col">Column heading</th>
