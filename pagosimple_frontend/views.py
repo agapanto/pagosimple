@@ -6,6 +6,7 @@ from django.http import (
     # HttpResponseRedirect,
 )
 from django.template import loader
+from django.urls import reverse
 from django.views import View
 from django.views.generic import (
     DetailView,
@@ -151,3 +152,15 @@ class DashboardAppPlanEditView(UpdateView):
         )
 
         return context
+
+    def get_success_url(self, **kwargs):
+        """If form is valid, return the user to Plan detail view."""
+        success_url = reverse(
+            'app_detail_plan_detail',
+            kwargs={
+                'app_unique_id': self.kwargs.get('app_unique_id'),
+                'plan_unique_id': self.kwargs.get('plan_unique_id'),
+            }
+        )
+
+        return success_url
