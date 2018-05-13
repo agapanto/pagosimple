@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load addcss %}
+
+<!-- {% load i18n %} -->
+<!-- {% load static %} -->
+{% block css %}
+    {{ block.super }}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> -->
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  {% include 'components/breadcrumb.html' %}
+
+  <div class="row">
+
+    <div class="col-3">
+      {% include 'components/app_card.html' %}
+    </div>
+
+    <div class="col-9">
+
+      <!-- {% include 'components/admin_navbar.html' %} -->
+
+      {% include 'components/forms/edit_model.html' with form=form form_title="Create Plan" submit_url="#" %}
+
+    </div>
+
+  </div>
+
+{% endblock %}
