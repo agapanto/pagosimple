@@ -6,7 +6,11 @@
     <h5 class="card-title">{{ app.name }}</h5>
     <div class="card-text">
       <p>
-        With supporting text below as a natural lead-in to additional content.
+        {% if app.description %}
+          {{ app.description }}
+        {% else %}
+          <i>There is no description for the current App</i>
+        {% endif %}
       </p>
     </div>
     <a href="{% url 'app_detail' app_unique_id=app.unique_id %}" class="btn btn-primary">
