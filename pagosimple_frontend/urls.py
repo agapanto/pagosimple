@@ -11,9 +11,13 @@ from .views import (
     DashboardBriefView,
     DashboardAppView,
     DashboardAppPaymentListView,
-    DashboardAppPlanListView,
-    DashboardAppPlanDetailView,
-    DashboardAppPlanEditView,
+
+)
+
+from .dashboard.plans.views import (
+    PlanListView,
+    PlanDetailView,
+    PlanEditView,
 )
 
 
@@ -51,17 +55,17 @@ urlpatterns = [
     ),
     path(
         'dashboard/apps/<uuid:app_unique_id>/plans',
-        DashboardAppPlanListView.as_view(),
+        PlanListView.as_view(),
         name='app_detail_plan_list'
     ),
     path(
         'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>',
-        DashboardAppPlanDetailView.as_view(),
+        PlanDetailView.as_view(),
         name='app_detail_plan_detail'
     ),
     path(
         'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/edit',
-        DashboardAppPlanEditView.as_view(),
+        PlanEditView.as_view(),
         name='app_detail_plan_edit'
     ),
 ]
