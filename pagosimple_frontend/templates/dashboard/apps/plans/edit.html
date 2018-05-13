@@ -18,13 +18,11 @@
 
   <div class="row">
 
-    <div class="col-3">
-      {% include 'components/app_card.html' %}
+    <div class="col-1">
+      {% include 'components/app_side_card.html' %}
     </div>
 
-    <div class="col-9">
-
-      <!-- {% include 'components/admin_navbar.html' %} -->
+    <div class="col-10">
 
       {% include 'components/forms/edit_model.html' with form=form form_title="Edit Plan" submit_url="#" %}
 

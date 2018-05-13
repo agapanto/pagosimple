@@ -16,13 +16,62 @@
 
   <div class="row">
 
-    <div class="col-3">
-
-      {% include 'components/plan_card.html' %}
+    <div class="col-1">
+      {% include 'components/app_side_card.html' %}
 
     </div>
 
-    <div class="col-9">
+    <div class="col-10">
+
+      <div class="row">
+        <div class="col-12">
+          <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail_plan_list' app_unique_id=app_unique_id %}">
+            Back
+          </a>
+          <a class="btn btn-primary float-right mb-4" href="{% url 'app_detail_plan_edit' app_unique_id=app_unique_id plan_unique_id=plan.unique_id %}">
+            EDIT PLAN
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            {{ plan.name }}
+          </h3>
+
+          <p>
+            {% if plan.description %}
+              {{ plan.description }}
+            {% else %}
+              <i>There is no description for the current Plan</i>
+            {% endif %}
+          </p>
+
+          <ul class="">
+            <li>
+              Created: {{ plan.created_at }}
+            </li>
+            <li>
+              Updated: {{ plan.updated_at }}
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            Plan subscribers
+          </h3>
+          <p>
+            <i>
+              The following accounts are subscribed to your current plan.
+            </i>
+          </p>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-12">

@@ -16,13 +16,17 @@
 
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-1">
 
-      {% include 'components/app_card.html' %}
+      {% comment %}
+        {% include 'components/app_card.html' %}
+      {% endcomment %}
+
+      {% include 'components/app_side_card.html' %}
 
     </div>
 
-    <div class="col-9">
+    <div class="col-10">
 
       {% include 'components/admin_navbar.html' %}
 
@@ -30,36 +34,18 @@
         <div class="col-12">
 
           <div class="jumbotron">
-            <h1 class="display-3">
-              Control Panel
+            <h1 class="display-3 text-center">
+              {{ app.name }}
             </h1>
-            <p class="lead">
-              This control panel allows you to setup all your clients, plans & products, and also will show you all the payments done.
+            <p class="lead text-center">
+              <i>
+                This control panel allows you to setup all your clients, plans & products, and also will show you all the payments done.
+              </i>
             </p>
-            <!-- <hr class="my-4"> -->
-            <!-- <p>
-              It is a resume that we have for you about the current app.
-            </p> -->
+            <p class="text-center">
+              In the left panel you have quick access to your app's payments, clients, plans & products.
+            </p>
 
-            <!-- <div class="row">
-              <div class="col-3">
-                payments
-              </div>
-              <div class="col-3">
-                clients
-              </div>
-              <div class="col-3">
-                plans
-              </div>
-              <div class="col-3">
-                products
-              </div>
-            </div> -->
-            <!-- <p class="lead">
-              <a class="btn btn-primary btn-lg" href="#" role="button">
-                Learn more
-              </a>
-            </p> -->
           </div>
 
         </div>

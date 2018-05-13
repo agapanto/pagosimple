@@ -16,22 +16,39 @@
 
   <div class="row">
 
-    <div class="col-3">
-      {% include 'components/app_card.html' %}
+    <div class="col-1">
+      {% comment %}
+        {% include 'components/app_card.html' %}
+      {% endcomment %}
+
+      {% include 'components/app_side_card.html' %}
     </div>
 
-    <div class="col-9">
+    <div class="col-10">
 
-      {% include 'components/admin_navbar.html' %}
+      <!-- {% include 'components/admin_navbar.html' %} -->
 
       <div class="row">
         <div class="col-12">
-          <a class="btn btn-secondary float-left mb-4" href="#">
+          <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail' app_unique_id=app_unique_id %}">
             Back
           </a>
           <a class="btn btn-primary float-right mb-4" href="{% url 'app_detail_plan_create' app_unique_id=app_unique_id %}">
             NEW PLAN
           </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            {{ app.name }} plans
+          </h3>
+          <p>
+            <i>
+              The following are all your current app plans.
+            </i>
+          </p>
         </div>
       </div>
 
