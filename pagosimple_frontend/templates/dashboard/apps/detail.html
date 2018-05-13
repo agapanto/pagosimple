@@ -28,28 +28,33 @@
 
     <div class="col-10">
 
-      {% include 'components/admin_navbar.html' %}
-
       <div class="row">
         <div class="col-12">
-
-          <div class="jumbotron">
-            <h1 class="display-3 text-center">
-              {{ app.name }}
-            </h1>
-            <p class="lead text-center">
-              <i>
-                This control panel allows you to setup all your clients, plans & products, and also will show you all the payments done.
-              </i>
-            </p>
-            <p class="text-center">
-              In the left panel you have quick access to your app's payments, clients, plans & products.
-            </p>
-
-          </div>
-
+          <a class="btn btn-secondary float-left mb-4" href="{% url 'dashboard' %}">
+            Back
+          </a>
+          <a class="btn btn-primary disabled float-right mb-4" href="#">
+            CONFIG APP
+          </a>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            {{ app.name }} brief
+          </h3>
+          <p>
+            <i>
+              The following are all your current app plans.
+            </i>
+          </p>
+        </div>
+      </div>
+
+      {% include 'components/admin_navbar.html' %}
+
+      <hr class="mt-4 mb-4">
 
       {% include 'components/help_bar.html' %}
 

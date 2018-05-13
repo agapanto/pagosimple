@@ -1,38 +1,66 @@
-<div class="row mb-4">
+<div class="row mb-4 ">
+  <div class="col-3 text-center">
+    <a href="{% url 'app_detail_payments' app_unique_id=app_unique_id%}">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>
+            <i class="fa fa-credit-card"> </i>
+          </h1>
 
-  <div class="col-12">
-
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-        {% if request.resolver_match.url_name == 'app_detail_payments' %}
-        <a class="nav-link active" href="{% url 'app_detail_payments' app_unique_id=app_unique_id%}">
-        {% else %}
-        <a class="nav-link" href="{% url 'app_detail_payments' app_unique_id=app_unique_id%}">
-        {% endif %}
+        </div>
+        <div class="card-footer">
           payments
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          clients
-        </a>
-      </li>
-      <li class="nav-item">
-        {% if request.resolver_match.url_name == 'app_detail_plan_list' %}
-        <a class="nav-link active" href="{% url 'app_detail_plan_list' app_unique_id=app_unique_id %}">
-        {% else %}
-        <a class="nav-link" href="{% url 'app_detail_plan_list' app_unique_id=app_unique_id %}">
-        {% endif %}
-          plans
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">
-          products
-        </a>
-      </li>
-    </ul>
+        </div>
+      </div>
+    </a>
+  </div>
 
+  <div class="col-3 text-center">
+    <a href="#">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>
+            <i class="fa fa-user"> </i>
+          </h1>
+
+        </div>
+        <div class="card-footer">
+          customers
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-3 text-center">
+    <a href="{% url 'app_detail_plan_list' app_unique_id=app_unique_id %}">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>
+            <i class="fa fa-book"> </i>
+          </h1>
+
+        </div>
+        <div class="card-footer">
+          plans
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-3 text-center">
+    <a href="#">
+      <div class="card">
+        <div class="card-body text-center">
+          <h1>
+            <i class="fa fa-beer"> </i>
+          </h1>
+
+        </div>
+        <div class="card-footer">
+          products
+        </div>
+      </div>
+    </a>
   </div>
 
 </div>
