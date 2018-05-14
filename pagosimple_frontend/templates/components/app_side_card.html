@@ -2,9 +2,11 @@
 
   <div class="card-body text-muted text-center">
 
-    <div class="mb-0">
-      <i class="fa fa-list"> </i>
-    </div>
+    <a href="{% url 'app_detail' app_unique_id=app.unique_id %}">
+      <div class="mb-0">
+        <i class="fa fa-list"> </i>
+      </div>
+    </a>
 
   </div>
 
@@ -24,12 +26,14 @@
       0
     </div>
 
-    <div>
-      <i class="fa fa-book"> </i>
-    </div>
-    <div>
-      {{ app.plan_set.count }}
-    </div>
+    <a href="{% url 'app_detail_plan_list' app_unique_id=app.unique_id %}">
+      <div>
+        <i class="fa fa-book"> </i>
+      </div>
+      <div>
+        {{ app.plan_set.count }}
+      </div>
+    </a>
 
     <div>
       <i class="fa fa-beer"> </i>

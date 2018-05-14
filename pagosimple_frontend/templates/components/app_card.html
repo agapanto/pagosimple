@@ -14,7 +14,7 @@
       </p>
     </div>
     <a href="{% url 'app_detail' app_unique_id=app.unique_id %}" class="btn btn-primary">
-      Go to details
+      Go to App
     </a>
     <a href="#" class="btn btn-secondary">
       CONFIG
@@ -30,7 +30,9 @@
         <i class="fa fa-user"> </i> 0
       </div>
       <div class="col-3">
-        <i class="fa fa-book"> </i> {{ app.plan_set.count }}
+        <a href="{% url 'app_detail_plan_list' app_unique_id=app.unique_id %}">
+          <i class="fa fa-book"> </i> {{ app.plan_set.count }}
+        </a>
       </div>
       <div class="col-3">
         <i class="fa fa-beer"> </i> 0
