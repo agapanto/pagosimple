@@ -12,8 +12,6 @@
 
 {% block content %}
 
-  {% include 'components/breadcrumb.html' %}
-
   <div class="row">
 
     <div class="col-1">
@@ -25,8 +23,6 @@
     </div>
 
     <div class="col-10">
-
-      <!-- {% include 'components/admin_navbar.html' %} -->
 
       <div class="row">
         <div class="col-12">
@@ -67,16 +63,16 @@
                 <th scope="col">
                   name
                 </th>
-                <th scope="col">
+                <th scope="col" class="text-center">
                   price
                 </th>
-                <th scope="col">
+                <th scope="col" class="text-center">
                   clients
                 </th>
                 <th scope="col">
                   updated at
                 </th>
-                <th scope="col">
+                <th scope="col" class="text-center">
                   actions
                 </th>
               </tr>
@@ -100,20 +96,23 @@
                     {{ plan.name }}
                   </a>
                 </td>
-                <td>
+                <td class="text-center">
                   {{ plan.price }}
-                  $ 10000
+                  $10000
                 </td>
-                <td>
+                <td class="text-center">
                   32
                 </td>
                 <td>
                   {{ plan.updated_at }}
                 </td>
-                <td>
-                  <button type="button" class="btn btn-info btn-sm disabled">
-                    + info
-                  </button>
+                <td class="text-center">
+                  <a class="btn btn-sm btn-outline-primary" href="{% url 'app_detail_plan_detail' app_unique_id=app_unique_id plan_unique_id=plan.unique_id %}">
+                    Detail
+                  </a>
+                  <a class="btn btn-sm btn-outline-secondary text-muted" href="{% url 'app_detail_plan_edit' app_unique_id=app_unique_id plan_unique_id=plan.unique_id %}">
+                    Edit
+                  </a>
                 </td>
               </tr>
               {% endfor %}
