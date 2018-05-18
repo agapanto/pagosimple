@@ -1,0 +1,62 @@
+{% load addcss %}
+
+<form action="#" method="post">
+
+  <div class="row">
+    <div class="col-12">
+      <button class="btn btn-secondary float-left mb-4" onclick="goBack()">BACK</button>
+      <input type="submit" class="btn btn-primary float-right mb-4" href="{{ submit_url }}" value="Save">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 offset-3">
+      {% csrf_token %}
+
+      {# Include the hidden fields #}
+      {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+      {% endfor %}
+
+      <fieldset>
+        <legend class="text-center">
+          {{ form_title }}
+        </legend>
+
+        {# Include the visible fields #}
+        {% for field in form.visible_fields %}
+
+          {% if field.field.widget.input_type == 'text' %}
+          <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field | addcss:'form-control' }}
+          </div>
+
+          {% elif field.field.widget.input_type == 'checkbox' %}
+          <div class="form-group">
+            {{ field.errors }}
+            <div class="form-check">
+              <label class="form-check-label">
+                {{ field | addcss:'form-check-input' }}
+                {{ field.label }}
+              </label>
+            </div>
+          </div>
+
+          {% else %}
+          <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field | addcss:'form-control' }}
+          </div>
+          {% endif %}
+
+        {% endfor %}
+
+        <input type="submit" class="btn btn-primary float-right mb-4" href="{{ submit_url }}" value="Save">
+
+      </fieldset>
+
+    </div>
+  </div>
+
+</form>
