@@ -102,6 +102,21 @@ class PlanCreateView(CreateView):
 
         return success_url
 
+    def form_valid(self, form):
+        """
+        If the form is valid, save the associated model.
+
+        After form validation, if it's valid, set the current app relationship
+        to the PlanForm.
+        """
+        context = self.get_context_data()
+        app = context.get('app')
+
+        form.instance.app = app
+
+        return super().form_valid(form)
+
+
 class PlanEditView(UpdateView):
     template_name = 'dashboard/apps/plans/edit.html'
     form_class = PlanForm
