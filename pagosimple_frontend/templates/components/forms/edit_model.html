@@ -19,8 +19,8 @@
       {% endfor %}
 
       <fieldset>
-        <legend class="text-center" style="font-weight: bold;">
-          {{ form_title | upper }}
+        <legend class="text-center">
+          {{ form_title }}
         </legend>
 
         {# Include the visible fields #}
@@ -51,6 +51,8 @@
           {% endif %}
 
         {% endfor %}
+
+        <input type="submit" class="btn btn-primary float-right mb-4" href="{{ submit_url }}" value="Save changes">
 
       </fieldset>
 
