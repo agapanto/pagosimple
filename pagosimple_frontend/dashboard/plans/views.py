@@ -36,7 +36,9 @@ class PlanListView(View):
 
         app_unique_id = kwargs.get('app_unique_id')
         app = App.objects.get(unique_id=app_unique_id)
-        plans = Plan.objects.filter(app=app)
+        plans = Plan.objects.filter(app=app).order_by(
+            '-updated_at'
+        )
 
         context = {
             'app_unique_id': app_unique_id,
