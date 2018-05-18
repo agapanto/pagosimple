@@ -2,6 +2,12 @@
 
   <div class="card-body text-muted text-center">
 
+    <a href="{% url 'dashboard' %}">
+      <div class="mb-4">
+        <i class="fa fa-home"> </i>
+      </div>
+    </a>
+
     <a href="{% url 'app_detail' app_unique_id=app.unique_id %}">
       <div class="mb-0">
         <i class="fa fa-list"> </i>
