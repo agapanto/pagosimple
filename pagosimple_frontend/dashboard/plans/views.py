@@ -118,6 +118,23 @@ class PlanCreateView(CreateView):
 
         return super().form_valid(form)
 
+    def get_initial(self, **kwargs):
+        """Set initial value of Form fields."""
+        initial_data = super(PlanCreateView, self).get_initial(
+            **kwargs
+        )
+
+        app_unique_id = self.kwargs.get('app_unique_id')
+        app = App.objects.get(unique_id=app_unique_id)
+
+        initial_data['code'] = 'PLAN{correlative}'.format(
+            correlative=str(
+                Plan.objects.filter(app=app).count() + 1
+            )
+        )
+
+        return initial_data
+
 
 class PlanEditView(UpdateView):
     template_name = 'dashboard/apps/plans/edit.html'
