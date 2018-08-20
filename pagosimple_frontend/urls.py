@@ -30,12 +30,12 @@ urlpatterns = [
     ),
     path(
         'login',
-        auth_views.login,
+        auth_views.LoginView.as_view(),
         name='login'
     ),
     path(
         'logout',
-        auth_views.logout,
+        auth_views.LogoutView.as_view(),
         {'next_page': '/web'},
         name='logout'
     ),
