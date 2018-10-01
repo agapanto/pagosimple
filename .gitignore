@@ -105,3 +105,5 @@ db.sqlite3
 
 # Complementary apps
 rest_framework_apicontrol
+
+!static/__init__.py
