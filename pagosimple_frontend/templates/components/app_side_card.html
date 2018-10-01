@@ -2,50 +2,70 @@
 
   <div class="card-body text-muted text-center">
 
-    <a href="{% url 'dashboard' %}">
-      <div class="mb-4">
-        <i class="fa fa-home"> </i>
-      </div>
-    </a>
+    <div class="row">
 
-    <a href="{% url 'app_detail' app_unique_id=app.unique_id %}">
-      <div class="mb-0">
-        <i class="fa fa-list"> </i>
+      <div class="col-3 col-sm-3 col-md-3 col-lg-12 offset-3 offset-sm-3 offset-md-3 offset-lg-0">
+        <a href="{% url 'dashboard' %}">
+          <div class="mb-lg-4">
+            <i class="fa fa-home"> </i>
+          </div>
+        </a>
       </div>
-    </a>
+
+      <div class="col-3 col-sm-3 col-md-3 col-lg-12">
+        <a href="{% url 'app_detail' app_unique_id=app.unique_id %}">
+          <div class="mb-0">
+            <i class="fa fa-list"> </i>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
 
   </div>
 
   <div class="card-footer text-muted text-center">
 
-    <div>
-      <i class="fa fa-credit-card"> </i>
-    </div>
-    <div>
-      0
-    </div>
-
-    <div>
-      <i class="fa fa-user"> </i>
-    </div>
-    <div>
-      0
-    </div>
-
-    <a href="{% url 'app_detail_plan_list' app_unique_id=app.unique_id %}">
-      <div>
-        <i class="fa fa-book"> </i>
+    <div class="row">
+      <div class="col-3 col-sm-3 col-md-3 col-lg-12">
+        <div>
+          <i class="fa fa-credit-card"> </i>
+        </div>
+        <div>
+          0
+        </div>
       </div>
-      <div>
-        {{ app.plan_set.count }}
-      </div>
-    </a>
 
-    <div>
-      <i class="fa fa-beer"> </i>
-    </div>
-    <div>
-      0
+      <div class="col-3 col-sm-3 col-md-3 col-lg-12">
+        <div>
+          <i class="fa fa-user"> </i>
+        </div>
+        <div>
+          0
+        </div>
+      </div>
+
+      <div class="col-3 col-sm-3 col-md-3 col-lg-12">
+        <a href="{% url 'app_detail_plan_list' app_unique_id=app.unique_id %}">
+          <div>
+            <i class="fa fa-book"> </i>
+          </div>
+          <div>
+            {{ app.plan_set.count }}
+          </div>
+        </a>
+      </div>
+
+      <div class="col-3 col-sm-3 col-md-3 col-lg-12">
+        <div>
+          <i class="fa fa-beer"> </i>
+        </div>
+        <div>
+          0
+        </div>
+      </div>
+
     </div>
 
   </div>
