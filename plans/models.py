@@ -76,6 +76,7 @@ class Plan(EnabledModelMixin,
         max_length=NAME_FIELD_MAX_LENGTH
     )
     description = models.TextField(
+        blank=True,
         null=True
     )
 
