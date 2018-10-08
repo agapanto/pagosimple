@@ -24,5 +24,6 @@ class PlanForm(ModelForm):
             # 'updated_at',
             'code',
             'name',
+            'description',
             'enabled',
         ]
