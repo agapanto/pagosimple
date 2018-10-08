@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Security & multi-app management
     'rest_framework_apicontrol',
     # Project apps
+    'currencies',
     'accounts',
     'plans',
     'products',
