@@ -79,6 +79,14 @@ class Plan(EnabledModelMixin,
         blank=True,
         null=True
     )
+    base_price = models.FloatField(
+        default=0
+    )
+    currency = models.ForeignKey(
+        'currencies.Currency',
+        on_delete=models.CASCADE,
+        default='USD'
+    )
 
     class Meta:
         """

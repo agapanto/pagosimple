@@ -25,5 +25,7 @@ class PlanForm(ModelForm):
             'code',
             'name',
             'description',
+            'base_price',
+            'currency',
             'enabled',
         ]
