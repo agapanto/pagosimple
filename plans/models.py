@@ -75,6 +75,9 @@ class Plan(EnabledModelMixin,
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH
     )
+    description = models.TextField(
+        null=True
+    )
 
     class Meta:
         """
@@ -174,12 +177,12 @@ class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         default='months',
         max_length=12  # 12 for MILLENIALS
     )
-    plan_group = models.ForeignKey(
-        PlanGroup,
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE
-    )
+    # plan_group = models.ForeignKey(
+    #     PlanGroup,
+    #     blank=True,
+    #     null=True,
+    #     on_delete=models.CASCADE
+    # )
 
     def __str__(self):
         """Return the class instance item name in django admin."""
