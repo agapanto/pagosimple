@@ -53,11 +53,11 @@ class Currency(EnabledModelMixin, TrackableModelMixin):
                 does not exist.
         """
         try:
-            new_currency = Currency.objects.get(
+            destination_currency = Currency.objects.get(
                 code=currency_code
             )
 
-            value = amount * new_currency.conversion_factor / self.conversion_factor
+            value = amount * destination_currency.conversion_factor / self.conversion_factor
 
             return value
 
