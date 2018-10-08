@@ -45,7 +45,7 @@
       </div>
 
       <div class="row">
-        <div class="col-12">
+        <div class="col-12 table-responsive">
 
           <table class="table">
             <thead>
@@ -79,9 +79,9 @@
               <tr>
                 <td class="text-center">
                   {% if plan.enabled %}
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-check text-success"></i>
                   {% else %}
-                    <i class="fa fa-times"></i>
+                    <i class="fa fa-times text-danger"></i>
                   {% endif %}
                 </td>
                 <td>
@@ -93,8 +93,7 @@
                   </a>
                 </td>
                 <td class="text-center">
-                  {{ plan.price }}
-                  $10000
+                  {{ plan.currency.symbol }}{{ plan.base_price }} {{ plan.currency.code }}
                 </td>
                 <td class="text-center">
                   {{ plan.planinstance_set.count }}
