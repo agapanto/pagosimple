@@ -9,12 +9,12 @@ from django.template import loader
 from django.urls import reverse
 from django.views import View
 from django.views.generic import (
-    DetailView,
-    FormView,
+    # DetailView,
+    # FormView,
     CreateView,
     UpdateView,
-    DeleteView,
-    ListView,
+    # DeleteView,
+    # ListView,
 )
 from rest_framework_apicontrol.models import (
     App,
