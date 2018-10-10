@@ -116,7 +116,7 @@ class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     renewal_datetime = models.DateTimeField()
 
     metadata = JSONField(
-        default={},
+        default=dict,
         blank=True
     )
 
