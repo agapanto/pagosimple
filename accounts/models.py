@@ -28,7 +28,10 @@ class Account(ActiveModelMixin, EnabledModelMixin, PerAppModelMixin,
         max_length=CODE_FIELD_MAX_LENGTH
     )
     email = models.EmailField()
-    metadata = JSONField()
+    metadata = JSONField(
+        default=dict,
+        blank=True
+    )
 
     class Meta:
         """
