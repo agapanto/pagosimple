@@ -87,6 +87,10 @@ class Plan(EnabledModelMixin,
         on_delete=models.CASCADE,
         default='USD'
     )
+    renewal_options = models.ManyToManyField(
+        'plans.RenewalOption',
+        blank=True
+    )
 
     class Meta:
         """

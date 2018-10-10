@@ -27,5 +27,6 @@ class PlanForm(ModelForm):
             'description',
             'base_price',
             'currency',
+            'renewal_options',
             'enabled',
         ]
