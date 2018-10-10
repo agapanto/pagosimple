@@ -89,9 +89,9 @@
                 <th scope="col">
                   renewal datetime
                 </th>
-                <th scope="col">
+                <!-- <th scope="col">
                   updated at
-                </th>
+                </th> -->
                 <th scope="col">
                   actions
                 </th>
@@ -103,9 +103,9 @@
               <tr>
                 <td class="text-center">
                   {% if plan_instance.active %}
-                    <i class="fa fa-check"></i>
+                    <i class="fa fa-check text-success"></i>
                   {% else %}
-                    <i class="fa fa-times"></i>
+                    <i class="fa fa-times text-danger"></i>
                   {% endif %}
                 </td>
                 <td>
@@ -119,9 +119,9 @@
                 <td>
                   {{ plan_instance.renewal_datetime }}
                 </td>
-                <td>
+                <!-- <td>
                   {{ plan_instance.updated_at }}
-                </td>
+                </td> -->
                 <td>
                   <button type="button" class="btn btn-info btn-sm disabled">
                     + info
