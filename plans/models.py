@@ -127,6 +127,11 @@ class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         on_delete=models.CASCADE
     )
 
+    account = models.ForeignKey(
+        'accounts.Account',
+        on_delete=models.CASCADE
+    )
+
     def apply_renewal_option(self, obj, renewal_option, commit=True):
         """Apply an specific renewal_option to the current instance."""
         self.set_renewal_datetime(
