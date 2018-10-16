@@ -46,12 +46,9 @@
             {% endif %}
           </p>
 
-          <ul class="">
+          <ul class="unstyled">
             <li>
-              Created: {{ plan.created_at }}
-            </li>
-            <li>
-              Updated: {{ plan.updated_at }}
+              <i class="far fa-clock"></i> <b>last update:</b> {{ plan.updated_at }}
             </li>
           </ul>
 
@@ -59,15 +56,10 @@
       </div>
 
       <div class="row">
-        <div class="col-12 mb-4 text-center">
-          <h3>
-            Plan subscribers
-          </h3>
-          <p>
-            <i>
-              The following accounts are subscribed to your current plan.
-            </i>
-          </p>
+        <div class="col-12">
+          <a class="btn btn-outline-primary float-right mb-4" href="#">
+            ADD SUBSCRIBER
+          </a>
         </div>
       </div>
 
@@ -84,7 +76,7 @@
                   account
                 </th>
                 <th scope="col">
-                  created at
+                  subscribed at
                 </th>
                 <th scope="col">
                   renewal datetime
@@ -92,7 +84,7 @@
                 <!-- <th scope="col">
                   updated at
                 </th> -->
-                <th scope="col">
+                <th scope="col" class="text-center">
                   actions
                 </th>
               </tr>
@@ -122,9 +114,12 @@
                 <!-- <td>
                   {{ plan_instance.updated_at }}
                 </td> -->
-                <td>
-                  <button type="button" class="btn btn-info btn-sm disabled">
-                    + info
+                <td class="text-center">
+                  <button type="button" class="btn btn-sm btn-outline-primary disabled">
+                    detail
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary text-muted">
+                    edit
                   </button>
                 </td>
               </tr>
