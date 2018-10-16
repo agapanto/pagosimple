@@ -34,6 +34,9 @@ class Currency(EnabledModelMixin, TrackableModelMixin):
     conversion_factor = models.FloatField(
         default=1
     )
+    decimals = models.IntegerField(
+        default=2
+    )
 
     def calculate_as(self, currency_code, amount=1):
         """
