@@ -65,9 +65,9 @@
                 <th scope="col" class="text-center">
                   clients
                 </th>
-                <th scope="col">
+                <!-- <th scope="col">
                   updated at
-                </th>
+                </th> -->
                 <th scope="col" class="text-center">
                   actions
                 </th>
@@ -98,9 +98,9 @@
                 <td class="text-center">
                   {{ plan.planinstance_set.count }}
                 </td>
-                <td>
+                <!-- <td>
                   {{ plan.updated_at }}
-                </td>
+                </td> -->
                 <td class="text-center">
                   <a class="btn btn-sm btn-outline-primary" href="{% url 'app_detail_plan_detail' app_unique_id=app_unique_id plan_unique_id=plan.unique_id %}">
                     Detail
