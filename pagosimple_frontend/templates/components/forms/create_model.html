@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-12">
       <button class="btn btn-secondary float-left mb-4" onclick="goBack()">BACK</button>
-      <input type="submit" class="btn btn-primary float-right mb-4" href="{{ submit_url }}" value="Save">
+      <!-- <input type="submit" class="btn btn-primary float-right mb-4" href="{{ submit_url }}" value="Save"> -->
     </div>
   </div>
 
@@ -18,11 +18,11 @@
         {{ hidden }}
       {% endfor %}
 
-      <fieldset>
-        <legend class="text-center">
-          {{ form_title }}
-        </legend>
+      <h3 class="text-center">
+        {{ form_title }}
+      </h3>
 
+      <fieldset>
         {# Include the visible fields #}
         {% for field in form.visible_fields %}
 
