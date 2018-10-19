@@ -93,7 +93,7 @@
                   </a>
                 </td>
                 <td class="text-center">
-                  {{ plan.currency.symbol }}{{ plan.base_price }} {{ plan.currency.code }}
+                  {{ plan.currency.symbol }}{{ plan.base_price | floatformat:plan.currency.decimals }} {{ plan.currency.code }}
                 </td>
                 <td class="text-center">
                   {{ plan.planinstance_set.count }}
