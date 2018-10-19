@@ -204,4 +204,6 @@ class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
 
     def __str__(self):
         """Return the class instance item name in django admin."""
-        return str(self.name)+" - "+str(self.created_at)
+        return "{name}".format(
+            name=self.name
+        )
