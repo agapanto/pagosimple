@@ -167,7 +167,10 @@ class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
 
     def __str__(self):
         """Return the class instance item name in django admin."""
-        return str(self.id)
+        return "{plan_name} - {plan_account_email}".format(
+            plan_name=self.plan.name,
+            plan_account_email=self.account.email
+        )
 
 
 class RenewalOption(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
