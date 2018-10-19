@@ -21,6 +21,7 @@ from rest_framework_apicontrol.models import (
 )
 from plans.models import (
     Plan,
+    PlanInstance,
 )
 from plans.forms import (
     PlanForm,
@@ -29,6 +30,7 @@ from plans.forms import (
 logger = logging.getLogger(__name__)
 
 
+# Plan model related views
 class PlanListView(View):
     def get(self, request, *args, **kwargs):
         """It is the main view of the dashboard."""
@@ -174,3 +176,33 @@ class PlanEditView(UpdateView):
         )
 
         return success_url
+
+
+# PlanInstance model related views
+class PlanInstanceDetailView(View):
+    def get(self, request, *args, **kwargs):
+        template = loader.get_template(
+            'dashboard/apps/plans/instances/detail.html'
+        )
+
+        app_unique_id = kwargs.get('app_unique_id')
+        plan_unique_id = kwargs.get('plan_unique_id')
+        plan_instance_unique_id = kwargs.get('plan_instance_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+        plans = Plan.objects.filter(app=app)
+        plan = Plan.objects.get(unique_id=plan_unique_id)
+        plan_instance = PlanInstance.objects.get(
+            unique_id=plan_instance_unique_id
+        )
+
+        context = {
+            'app_unique_id': app_unique_id,
+            'plan_unique_id': plan_unique_id,
+            'app': app,
+            'plans': plans,
+            'plan': plan,
+            'plan_instance': plan_instance
+        }
+
+        return HttpResponse(template.render(context, request))

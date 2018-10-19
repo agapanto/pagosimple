@@ -101,7 +101,7 @@
                   {% endif %}
                 </td>
                 <td>
-                  <a href="#">
+                  <a href="{% url 'app_detail_plan_planinstance_detail' app_unique_id=app_unique_id plan_unique_id=plan.unique_id plan_instance_unique_id=plan_instance.unique_id %}">
                     {{ plan_instance.account.email }}
                   </a>
                 </td>
@@ -115,12 +115,12 @@
                   {{ plan_instance.updated_at }}
                 </td> -->
                 <td class="text-center">
-                  <button type="button" class="btn btn-sm btn-outline-primary disabled">
+                  <a href="{% url 'app_detail_plan_planinstance_detail' app_unique_id=app_unique_id plan_unique_id=plan.unique_id plan_instance_unique_id=plan_instance.unique_id %}" class="btn btn-sm btn-outline-primary">
                     detail
-                  </button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary text-muted">
+                  </a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary text-muted">
                     edit
-                  </button>
+                  </button> -->
                 </td>
               </tr>
               {% endfor %}
