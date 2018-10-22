@@ -11,6 +11,7 @@ from django.forms import (
 # )
 from plans.models import (
     Plan,
+    PlanInstance,
 )
 
 
@@ -30,4 +31,21 @@ class PlanForm(ModelForm):
             'currency',
             'renewal_options',
             'enabled',
+        ]
+
+
+class PlanInstanceForm(ModelForm):
+    """plans.Plan model form."""
+
+    class Meta:
+        model = PlanInstance
+        fields = [
+            # 'app',
+            # 'unique_id',
+            # 'created_at',
+            # 'updated_at',
+            'renewal_datetime',
+            # 'metadata',
+            'plan',
+            'account',
         ]
