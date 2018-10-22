@@ -25,6 +25,7 @@ from plans.models import (
 )
 from plans.forms import (
     PlanForm,
+    PlanInstanceForm,
 )
 
 logger = logging.getLogger(__name__)
@@ -199,6 +200,7 @@ class PlanInstanceDetailView(View):
         context = {
             'app_unique_id': app_unique_id,
             'plan_unique_id': plan_unique_id,
+            'plan_instance_unique_id': plan_instance_unique_id,
             'app': app,
             'plans': plans,
             'plan': plan,
@@ -206,3 +208,54 @@ class PlanInstanceDetailView(View):
         }
 
         return HttpResponse(template.render(context, request))
+
+
+class PlanInstanceEditView(UpdateView):
+    template_name = 'dashboard/apps/plans/instances/edit.html'
+    form_class = PlanInstanceForm
+    model = PlanInstance
+
+    def get_object(self, **kwargs):
+        plan_instance_unique_id = self.kwargs.get('plan_instance_unique_id')
+
+        return self.model.objects.get(unique_id=plan_instance_unique_id)
+
+    def get_context_data(self, **kwargs):
+        context = super(PlanInstanceEditView, self).get_context_data(
+            **kwargs
+        )
+
+        app_unique_id = self.kwargs.get('app_unique_id')
+        plan_unique_id = self.kwargs.get('plan_unique_id')
+        plan_instance_unique_id = self.kwargs.get('plan_instance_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+        plans = Plan.objects.filter(app=app)
+        plan = Plan.objects.get(unique_id=plan_unique_id)
+        plan_instance = PlanInstance.objects.get(
+            unique_id=plan_instance_unique_id
+        )
+
+        context['app_unique_id'] = app_unique_id
+        context['plan_unique_id'] = plan_unique_id
+        context['app'] = app
+        context['plans'] = plans
+        context['plan'] = plan
+        context['plan_instance'] = plan_instance
+
+        return context
+
+    def get_success_url(self, **kwargs):
+        """If form is valid, return the user to Plan detail view."""
+        success_url = reverse(
+            'app_detail_plan_planinstance_detail',
+            kwargs={
+                'app_unique_id': self.kwargs.get('app_unique_id'),
+                'plan_unique_id': self.kwargs.get('plan_unique_id'),
+                'plan_instance_unique_id': self.kwargs.get(
+                    'plan_instance_unique_id'
+                ),
+            }
+        )
+
+        return success_url

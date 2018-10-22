@@ -26,7 +26,7 @@
           <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail_plan_detail' app_unique_id=app_unique_id plan_unique_id=plan_unique_id %}">
             Back
           </a>
-          <a class="btn btn-primary float-right mb-4" href="#">
+          <a class="btn btn-primary float-right mb-4" href="{% url 'app_detail_plan_planinstance_edit' app_unique_id=app_unique_id plan_unique_id=plan_unique_id plan_instance_unique_id=plan_instance_unique_id %}">
             EDIT SUBSCRIPTION
           </a>
         </div>

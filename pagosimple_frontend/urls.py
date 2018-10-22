@@ -22,6 +22,7 @@ from .dashboard.plans.views import (
     PlanEditView,
     # PlanInstance model views
     PlanInstanceDetailView,
+    PlanInstanceEditView,
 )
 
 
@@ -82,5 +83,10 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/subscriptions/<uuid:plan_instance_unique_id>',
         PlanInstanceDetailView.as_view(),
         name='app_detail_plan_planinstance_detail'
+    ),
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/subscriptions/<uuid:plan_instance_unique_id>/edit',
+        PlanInstanceEditView.as_view(),
+        name='app_detail_plan_planinstance_edit'
     ),
 ]
