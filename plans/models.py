@@ -103,7 +103,12 @@ class Plan(EnabledModelMixin,
 
     def __str__(self):
         """Return the class instance item name in django admin."""
-        return str(self.name)+" - "+str(self.created_at)
+        return "{name} - {app}: {base_price} {currency_code}".format(
+            name=self.name,
+            app=self.app,
+            base_price=self.base_price,
+            currency_code=self.currency.code
+        )
 
 
 class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
