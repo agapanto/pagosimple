@@ -45,4 +45,7 @@ class Account(ActiveModelMixin, EnabledModelMixin, PerAppModelMixin,
 
     def __str__(self):
         """Return the class instance item name in django admin."""
-        return str(self.id)+" - "+str(self.created_at)
+        return "{email} - {app}".format(
+            email=self.email,
+            app=self.app
+        )
