@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load addcss %}
+
+<!-- {% load i18n %} -->
+<!-- {% load static %} -->
+{% block css %}
+    {{ block.super }}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> -->
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-1 mb-4 mb-sm-4 mb-md-4 mb-lg-0">
+      {% include 'components/app_side_card.html' %}
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+      {% include 'components/forms/create_model.html' with form=form form_title="Create Account" submit_url="#" %}
+    </div>
+
+  </div>
+
+{% endblock %}
