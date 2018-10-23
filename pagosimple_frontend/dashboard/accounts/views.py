@@ -69,3 +69,39 @@ class AccountDetailView(View):
 
         return HttpResponse(template.render(context, request))
 
+
+class AccountEditView(UpdateView):
+    template_name = 'dashboard/apps/accounts/edit.html'
+    form_class = AccountForm
+    model = Account
+
+    def get_object(self, **kwargs):
+        account_unique_id = self.kwargs.get('account_unique_id')
+
+        return self.model.objects.get(unique_id=account_unique_id)
+
+    def get_context_data(self, **kwargs):
+        context = super(AccountEditView, self).get_context_data(
+            **kwargs
+        )
+
+        app_unique_id = self.kwargs.get('app_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+
+        context['app_unique_id'] = app_unique_id
+        context['app'] = app
+
+        return context
+
+    def get_success_url(self, **kwargs):
+        """If form is valid, return the user to Plan detail view."""
+        success_url = reverse(
+            'app_detail_account_detail',
+            kwargs={
+                'app_unique_id': self.kwargs.get('app_unique_id'),
+                'account_unique_id': self.kwargs.get('account_unique_id'),
+            }
+        )
+
+        return success_url

@@ -93,7 +93,7 @@
                   <a class="btn btn-sm btn-outline-primary" href="{% url 'app_detail_account_detail' app_unique_id=app_unique_id account_unique_id=account.unique_id %}">
                     Detail
                   </a>
-                  <a class="btn btn-sm btn-outline-secondary text-muted" href="#">
+                  <a class="btn btn-sm btn-outline-secondary text-muted" href="{% url 'app_detail_account_edit' app_unique_id=app_unique_id account_unique_id=account.unique_id %}">
                     Edit
                   </a>
                 </td>
