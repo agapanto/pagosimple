@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+<!-- {% load i18n %} -->
+<!-- {% load static %} -->
+{% block css %}
+    {{ block.super }}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> -->
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-1 mb-4 mb-sm-4 mb-md-4 mb-lg-0">
+      {% include 'components/app_side_card.html' %}
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+
+      <div class="row">
+        <div class="col-12">
+          <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail' app_unique_id=app_unique_id %}">
+            Back
+          </a>
+          <a class="btn btn-primary float-right mb-4" href="#">
+            NEW ACCOUNT
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            {{ app.name }} accounts
+          </h3>
+          <p>
+            <i>
+              The following are all your current app accounts.
+            </i>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 table-responsive">
+
+          <table class="table">
+            <thead>
+              <tr class="table-light">
+                <th scope="col" class="text-center">
+                  enabled
+                </th>
+                <th scope="col">
+                  customer id
+                </th>
+                <th scope="col">
+                  email
+                </th>
+                <!-- <th scope="col">
+                  updated at
+                </th> -->
+                <th scope="col" class="text-center">
+                  actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for account in accounts %}
+              <tr>
+                <td class="text-center">
+                  {% if account.enabled %}
+                    <i class="fa fa-check text-success"></i>
+                  {% else %}
+                    <i class="fa fa-times text-danger"></i>
+                  {% endif %}
+                </td>
+                <td>
+                  {{ account.customer_id }}
+                </td>
+                <td>
+                  <a href="#">
+                    {{ account.email }}
+                  </a>
+                </td>
+                <!-- <td>
+                  {{ plan.updated_at }}
+                </td> -->
+                <td class="text-center">
+                  <a class="btn btn-sm btn-outline-primary" href="#">
+                    Detail
+                  </a>
+                  <a class="btn btn-sm btn-outline-secondary text-muted" href="#">
+                    Edit
+                  </a>
+                </td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}

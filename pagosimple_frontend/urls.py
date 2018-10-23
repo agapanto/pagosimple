@@ -11,7 +11,6 @@ from .views import (
     DashboardBriefView,
     DashboardAppView,
     DashboardAppPaymentListView,
-
 )
 
 from .dashboard.plans.views import (
@@ -24,6 +23,11 @@ from .dashboard.plans.views import (
     PlanInstanceDetailView,
     PlanInstanceEditView,
     PlanInstanceCreateView,
+)
+
+from .dashboard.accounts.views import (
+    # Account model views
+    AccountListView,
 )
 
 
@@ -94,5 +98,11 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/subscriptions/new',
         PlanInstanceCreateView.as_view(),
         name='app_detail_plan_planinstance_create'
+    ),
+    # Account model views
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/accounts',
+        AccountListView.as_view(),
+        name='app_detail_account_list'
     ),
 ]

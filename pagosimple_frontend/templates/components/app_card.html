@@ -27,7 +27,9 @@
         <i class="fa fa-credit-card"> </i> 0
       </div>
       <div class="col-3">
-        <i class="fa fa-user"> </i> 0
+        <a href="{% url 'app_detail_account_list' app_unique_id=app.unique_id %}">
+          <i class="fa fa-user"> </i> 0
+        </a>
       </div>
       <div class="col-3">
         <a href="{% url 'app_detail_plan_list' app_unique_id=app.unique_id %}">
