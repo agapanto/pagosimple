@@ -48,6 +48,9 @@
 
           <ul class="list-unstyled">
             <li>
+              <!--<i class="fa fa-dollar-sign"></i> --><b>base price:</b> {{ plan.currency.symbol }}{{ plan.base_price | floatformat:plan.currency.decimals }} {{ plan.currency.code }}
+            </li>
+            <li>
               <i class="far fa-clock"></i> <b>last update:</b> {{ plan.updated_at }}
             </li>
           </ul>
