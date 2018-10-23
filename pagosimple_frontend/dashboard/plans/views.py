@@ -259,3 +259,80 @@ class PlanInstanceEditView(UpdateView):
         )
 
         return success_url
+
+
+class PlanInstanceCreateView(CreateView):
+    template_name = 'dashboard/apps/plans/instances/create.html'
+    form_class = PlanInstanceForm
+    model = PlanInstance
+
+    def get_context_data(self, **kwargs):
+        context = super(PlanInstanceCreateView, self).get_context_data(
+            **kwargs
+        )
+
+        app_unique_id = self.kwargs.get('app_unique_id')
+        plan_unique_id = self.kwargs.get('plan_unique_id')
+        # plan_instance_unique_id = self.kwargs.get('plan_instance_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+        plans = Plan.objects.filter(app=app)
+        plan = Plan.objects.get(unique_id=plan_unique_id)
+        # plan_instance = PlanInstance.objects.get(
+        #     unique_id=plan_instance_unique_id
+        # )
+
+        context['app_unique_id'] = app_unique_id
+        context['plan_unique_id'] = plan_unique_id
+        context['app'] = app
+        context['plans'] = plans
+        context['plan'] = plan
+        # context['plan_instance'] = plan_instance
+
+        return context
+
+    def get_success_url(self, **kwargs):
+        """If form is valid, return the user to Plan detail view."""
+        success_url = reverse(
+            'app_detail_plan_planinstance_detail',
+            kwargs={
+                'app_unique_id': self.kwargs.get('app_unique_id'),
+                'plan_unique_id': self.kwargs.get('plan_unique_id'),
+                'plan_instance_unique_id': self.kwargs.get(
+                    'plan_instance_unique_id'
+                ),
+            }
+        )
+
+        return success_url
+
+    def form_valid(self, form):
+        """
+        If the form is valid, save the associated model.
+
+        After form validation, if it's valid, set the current app relationship
+        to the PlanForm.
+        """
+        context = self.get_context_data()
+        app = context.get('app')
+
+        # form.instance.app = app
+
+        return super().form_valid(form)
+
+    def get_initial(self, **kwargs):
+        """Set initial value of Form fields."""
+        initial_data = super(PlanInstanceCreateView, self).get_initial(
+            **kwargs
+        )
+
+        plan_unique_id = self.kwargs.get('plan_unique_id')
+        plan = Plan.objects.get(unique_id=plan_unique_id)
+
+        # app_unique_id = self.kwargs.get('app_unique_id')
+        # app = App.objects.get(unique_id=app_unique_id)
+
+        initial_data['plan'] = plan
+        initial_data['active'] = True
+
+        return initial_data
