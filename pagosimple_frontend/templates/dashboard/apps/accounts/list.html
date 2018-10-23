@@ -82,7 +82,7 @@
                   {{ account.customer_id }}
                 </td>
                 <td>
-                  <a href="#">
+                  <a href="{% url 'app_detail_account_detail' app_unique_id=app_unique_id account_unique_id=account.unique_id %}">
                     {{ account.email }}
                   </a>
                 </td>
@@ -90,7 +90,7 @@
                   {{ plan.updated_at }}
                 </td> -->
                 <td class="text-center">
-                  <a class="btn btn-sm btn-outline-primary" href="#">
+                  <a class="btn btn-sm btn-outline-primary" href="{% url 'app_detail_account_detail' app_unique_id=app_unique_id account_unique_id=account.unique_id %}">
                     Detail
                   </a>
                   <a class="btn btn-sm btn-outline-secondary text-muted" href="#">

@@ -48,3 +48,24 @@ class AccountListView(View):
         }
 
         return HttpResponse(template.render(context, request))
+
+
+class AccountDetailView(View):
+    def get(self, request, *args, **kwargs):
+        """It is the main view of the dashboard."""
+        template = loader.get_template('dashboard/apps/accounts/detail.html')
+
+        app_unique_id = kwargs.get('app_unique_id')
+        account_unique_id = kwargs.get('account_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+        account = Account.objects.get(unique_id=account_unique_id)
+
+        context = {
+            'app_unique_id': app_unique_id,
+            'app': app,
+            'account': account,
+        }
+
+        return HttpResponse(template.render(context, request))
+

@@ -28,6 +28,7 @@ from .dashboard.plans.views import (
 from .dashboard.accounts.views import (
     # Account model views
     AccountListView,
+    AccountDetailView,
 )
 
 
@@ -104,5 +105,10 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/accounts',
         AccountListView.as_view(),
         name='app_detail_account_list'
+    ),
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/accounts/<uuid:account_unique_id>',
+        AccountDetailView.as_view(),
+        name='app_detail_account_detail'
     ),
 ]

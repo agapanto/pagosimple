@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+<!-- {% load i18n %} -->
+<!-- {% load static %} -->
+{% block css %}
+    {{ block.super }}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" /> -->
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+
+    <div class="col-sm-12 col-md-12 col-lg-1 mb-4 mb-sm-4 mb-md-4 mb-lg-0">
+      {% include 'components/app_side_card.html' %}
+
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-10">
+
+      <div class="row">
+        <div class="col-12">
+          <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail_account_list' app_unique_id=app_unique_id %}">
+            Back
+          </a>
+          <a class="btn btn-primary float-right mb-4" href="#">
+            EDIT ACCOUNT
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            {{ account.email }} - {{ account.app.name }}
+          </h3>
+
+          <!-- <p>
+            {% if plan.description %}
+              {{ plan.description }}
+            {% else %}
+              <i>There is no description for the current Plan</i>
+            {% endif %}
+          </p> -->
+
+          <ul class="list-unstyled">
+            <li>
+              <b>customer id:</b> {{ account.customer_id }}
+            </li>
+            <li>
+              <b>email</b> {{ account.email }}
+            </li>
+            <li>
+              <b>app</b> {{ account.app.name }}
+            </li>
+            <li>
+              <i class="far fa-clock"></i> <b>created:</b> {{ account.created_at }}
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}
