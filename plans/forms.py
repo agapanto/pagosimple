@@ -48,4 +48,5 @@ class PlanInstanceForm(ModelForm):
             # 'metadata',
             'plan',
             'account',
+            'active',
         ]
