@@ -298,9 +298,7 @@ class PlanInstanceCreateView(CreateView):
             kwargs={
                 'app_unique_id': self.kwargs.get('app_unique_id'),
                 'plan_unique_id': self.kwargs.get('plan_unique_id'),
-                'plan_instance_unique_id': self.kwargs.get(
-                    'plan_instance_unique_id'
-                ),
+                'plan_instance_unique_id': self.object.unique_id,
             }
         )
 
