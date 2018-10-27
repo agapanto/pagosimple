@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'plans',
     'products',
     'orders',
+    'payments',
     # pagosimple Frontend app
     'pagosimple_frontend',
 ]
