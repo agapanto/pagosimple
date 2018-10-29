@@ -10,9 +10,7 @@ from .views import (
     index,
     DashboardBriefView,
     DashboardAppView,
-    DashboardAppPaymentListView,
 )
-
 from .dashboard.plans.views import (
     # Plan model views
     PlanListView,
@@ -61,11 +59,7 @@ urlpatterns = [
         DashboardAppView.as_view(),
         name='app_detail'
     ),
-    path(
-        'dashboard/apps/<uuid:app_unique_id>/payments',
-        DashboardAppPaymentListView.as_view(),
-        name='app_detail_payments'
-    ),
+    # Payment model views
     path(
         'dashboard/apps/<uuid:app_unique_id>/plans',
         PlanListView.as_view(),
