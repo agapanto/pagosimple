@@ -90,7 +90,7 @@
                   {{ payment.updated_at }}
                 </td>
                 <td class="text-center">
-                  <a class="btn btn-sm btn-outline-primary" href="#">
+                  <a class="btn btn-sm btn-outline-primary" href="{% url 'app_detail_payments_detail' app_unique_id=app_unique_id payment_unique_id=payment.unique_id %}">
                     Detail
                   </a>
                   <a class="btn btn-sm btn-outline-secondary text-muted" href="#">
