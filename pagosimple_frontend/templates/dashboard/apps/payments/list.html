@@ -12,49 +12,94 @@
 
 {% block content %}
 
-  
-
   <div class="row">
 
-    <div class="col-3">
-      {% include 'components/app_card.html' %}
+    <div class="col-sm-12 col-md-12 col-lg-1 mb-4 mb-sm-4 mb-md-4 mb-lg-0">
+      {% include 'components/app_side_card.html' %}
     </div>
 
-    <div class="col-9">
-
-      {% include 'components/admin_navbar.html' %}
+    <div class="col-12 col-sm-12 col-md-12 col-lg-10">
 
       <div class="row">
         <div class="col-12">
+          <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail' app_unique_id=app_unique_id %}">
+            Back
+          </a>
+          <a class="btn btn-primary float-right mb-4" href="#">
+            NEW SINGLE PAYMENT
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mb-4 text-center">
+          <h3>
+            {{ app.name }} payments
+          </h3>
+          <p>
+            <i>
+              The following are all your current app payments.
+            </i>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 table-responsive">
 
           <table class="table">
             <thead>
               <tr class="table-light">
-                <th scope="col">Type</th>
-                <th scope="col">Column heading</th>
-                <th scope="col">Column heading</th>
-                <th scope="col">Column heading</th>
+                <th scope="col" class="text-center">
+                  status
+                </th>
+                <th scope="col">
+                  account
+                </th>
+                <th scope="col">
+                  payment type
+                </th>
+                <th scope="col">
+                  created at
+                </th>
+                <th scope="col">
+                  updated at
+                </th>
+                <th scope="col" class="text-center">
+                  actions
+                </th>
               </tr>
             </thead>
             <tbody>
+
+              {% for payment in payments %}
               <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
+                <td class="text-center">
+                  {{ payment.status }}
+                </td>
+                <td>
+                  {{ payment.account.email }}
+                </td>
+                <td>
+                  {{ payment.payment_type }}
+                </td>
+                <td>
+                  {{ payment.created_at }}
+                </td>
+                <td>
+                  {{ payment.updated_at }}
+                </td>
+                <td class="text-center">
+                  <a class="btn btn-sm btn-outline-primary" href="#">
+                    Detail
+                  </a>
+                  <a class="btn btn-sm btn-outline-secondary text-muted" href="#">
+                    Edit
+                  </a>
+                </td>
               </tr>
-              <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-              </tr>
-              <tr>
-                <th scope="row">Default</th>
-                <td>Column content</td>
-                <td>Column content</td>
-                <td>Column content</td>
-              </tr>
+              {% endfor %}
+
             </tbody>
           </table>
 
