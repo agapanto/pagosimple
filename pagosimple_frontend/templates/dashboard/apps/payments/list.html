@@ -25,7 +25,7 @@
           <a class="btn btn-secondary float-left mb-4" href="{% url 'app_detail' app_unique_id=app_unique_id %}">
             Back
           </a>
-          <a class="btn btn-primary float-right mb-4" href="#">
+          <a class="btn btn-primary float-right mb-4" href="{% url 'app_detail_payments_create' app_unique_id=app_unique_id %}">
             NEW SINGLE PAYMENT
           </a>
         </div>
