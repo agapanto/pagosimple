@@ -124,3 +124,40 @@ class PaymentCreateView(CreateView):
         initial_data['payment_type'] = 'single_payment'
 
         return initial_data
+
+
+class PaymentEditView(UpdateView):
+    template_name = 'dashboard/apps/payments/edit.html'
+    form_class = PaymentForm
+    model = Payment
+
+    def get_object(self, **kwargs):
+        payment_unique_id = self.kwargs.get('payment_unique_id')
+
+        return self.model.objects.get(unique_id=payment_unique_id)
+
+    def get_context_data(self, **kwargs):
+        context = super(PaymentEditView, self).get_context_data(
+            **kwargs
+        )
+
+        app_unique_id = self.kwargs.get('app_unique_id')
+
+        app = App.objects.get(unique_id=app_unique_id)
+
+        context['app_unique_id'] = app_unique_id
+        context['app'] = app
+
+        return context
+
+    def get_success_url(self, **kwargs):
+        """If form is valid, return the user to Plan detail view."""
+        success_url = reverse(
+            'app_detail_payments_detail',
+            kwargs={
+                'app_unique_id': self.kwargs.get('app_unique_id'),
+                'payment_unique_id': self.kwargs.get('payment_unique_id'),
+            }
+        )
+
+        return success_url
