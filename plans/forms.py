@@ -1,4 +1,8 @@
 """plans app forms."""
+from django import forms
+from django.core.exceptions import (
+    ValidationError,
+)
 from django.forms import (
     # Form,
     ModelForm,
@@ -35,6 +39,29 @@ class PlanForm(ModelForm):
         widgets = {
             'app': forms.HiddenInput()
         }
+
+    def clean_code(self):
+        """Validate & clean the code form field."""
+        # Get data to look at
+        code = self.cleaned_data["code"]
+        app = self.cleaned_data["app"]
+
+        query_args = {
+            'code': code,
+            'app': app
+        }
+
+        if Plan.objects.filter(**query_args).exists():
+            # Get the existant model instance
+            existant_plan = Plan.objects.get(**query_args)
+
+            # Compare if the current instance model is the one is saved in DB
+            if self.instance.pk != existant_plan.pk:
+                raise ValidationError(
+                    'A Plan with this code already exists in current App.'
+                )
+
+        return code
 
 
 class PlanInstanceForm(ModelForm):
