@@ -21,7 +21,7 @@ class PlanForm(ModelForm):
     class Meta:
         model = Plan
         fields = [
-            # 'app',
+            'app',
             # 'created_at',
             # 'updated_at',
             'code',
@@ -32,6 +32,9 @@ class PlanForm(ModelForm):
             'renewal_options',
             'enabled',
         ]
+        widgets = {
+            'app': forms.HiddenInput()
+        }
 
 
 class PlanInstanceForm(ModelForm):
