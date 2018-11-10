@@ -20,7 +20,7 @@ class AccountForm(ModelForm):
     class Meta:
         model = Account
         fields = [
-            # 'app',
+            'app',
             # 'created_at',
             # 'updated_at',
             'customer_id',
@@ -28,3 +28,6 @@ class AccountForm(ModelForm):
             # 'metadata',
             'enabled',
         ]
+        widgets = {
+            'app': forms.HiddenInput()
+        }
