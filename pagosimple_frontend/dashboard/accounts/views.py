@@ -110,7 +110,7 @@ class AccountCreateView(CreateView):
         context = self.get_context_data()
         app = context.get('app')
 
-        form.instance.app = app
+        # form.instance.app = app
 
         return super().form_valid(form)
 
@@ -123,7 +123,7 @@ class AccountCreateView(CreateView):
         app_unique_id = self.kwargs.get('app_unique_id')
         app = App.objects.get(unique_id=app_unique_id)
 
-        # initial_data['customer_id'] = 
+        initial_data['app'] = app
 
         return initial_data
 
