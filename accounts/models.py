@@ -21,7 +21,7 @@ class Account(ActiveModelMixin, EnabledModelMixin, PerAppModelMixin,
     """
     Account model.
 
-    This model represents the Account of an user in the system.
+    This model represents the Account of a Customer in the system.
     """
 
     customer_id = models.CharField(
