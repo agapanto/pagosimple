@@ -135,6 +135,7 @@ class PlanCreateView(CreateView):
                 Plan.objects.filter(app=app).count() + 1
             )
         )
+        initial_data['app'] = app
 
         return initial_data
 
