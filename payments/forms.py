@@ -24,7 +24,7 @@ class PaymentForm(ModelForm):
             # 'created_at',
             # 'updated_at',
             'account',
-            'status',
+            'payment_status',
             'payment_type',
             'metadata',
         ]

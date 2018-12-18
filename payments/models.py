@@ -9,6 +9,7 @@ from rest_framework_apicontrol.mixins import (
     # ActiveModelMixin,
     # EnabledModelMixin,
     PerAppModelMixin,
+    StatusModelMixin,
     TrackableModelMixin,
     UniqueIDModelMixin,
 )
@@ -41,6 +42,7 @@ PAYMENT_TYPE_CHOICES = (
 
 
 class Payment(PerAppModelMixin,
+              # StatusModelMixin,
               TrackableModelMixin,
               UniqueIDModelMixin):
     """
@@ -53,7 +55,7 @@ class Payment(PerAppModelMixin,
         Account,
         on_delete=models.CASCADE
     )
-    status = models.CharField(
+    payment_status = models.CharField(
         max_length=STATUS_FIELD_MAX_LENGTH,
         choices=PAYMENT_STATUS_CHOICES
     )
@@ -70,5 +72,5 @@ class Payment(PerAppModelMixin,
         """Return the class instance item name in django admin."""
         return "{unique_id} - {status}".format(
             unique_id=self.unique_id,
-            status=self.status
+            status=self.payment_status
         )
