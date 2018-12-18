@@ -3,8 +3,9 @@
 import logging
 from django.http import (
     HttpResponse,
-    # HttpResponseRedirect,
+    HttpResponseRedirect,
 )
+from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.urls import reverse
 from django.views import View
@@ -163,3 +164,27 @@ class AccountEditView(UpdateView):
         )
 
         return success_url
+
+
+class AccountArchiveView(View):
+
+    def get(self, request, app_unique_id, account_unique_id):
+
+        account = get_object_or_404(
+            Account,
+            unique_id=account_unique_id
+        )
+
+        account.archive_status()
+
+        account_url = reverse(
+            'app_detail_account_detail',
+            kwargs={
+                'app_unique_id': app_unique_id,
+                'account_unique_id': account_unique_id,
+            }
+        )
+
+        return HttpResponseRedirect(
+            account_url
+        )

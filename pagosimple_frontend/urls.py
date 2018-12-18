@@ -36,6 +36,7 @@ from .dashboard.accounts.views import (
     AccountDetailView,
     AccountCreateView,
     AccountEditView,
+    AccountArchiveView,
 )
 
 
@@ -144,5 +145,10 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/accounts/<uuid:account_unique_id>/edit',
         AccountEditView.as_view(),
         name='app_detail_account_edit'
+    ),
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/accounts/<uuid:account_unique_id>/archive',
+        AccountArchiveView.as_view(),
+        name='app_detail_account_archive'
     ),
 ]
