@@ -7,7 +7,7 @@ from rest_framework_apicontrol.mixins import (
     ActiveModelMixin,
     EnabledModelMixin,
     PerAppModelMixin,
-    StatusModelMixin,
+    InstanceStatusModelMixin,
     TrackableModelMixin,
     UniqueIDModelMixin,
 )
@@ -18,7 +18,7 @@ from rest_framework_apicontrol.models import (
 
 
 class Account(ActiveModelMixin, EnabledModelMixin, PerAppModelMixin,
-              StatusModelMixin, TrackableModelMixin, UniqueIDModelMixin):
+              InstanceStatusModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """
     Account model.
 

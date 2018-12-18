@@ -9,7 +9,7 @@ from rest_framework_apicontrol.mixins import (
     # ActiveModelMixin,
     # EnabledModelMixin,
     PerAppModelMixin,
-    StatusModelMixin,
+    InstanceStatusModelMixin,
     TrackableModelMixin,
     UniqueIDModelMixin,
 )
@@ -42,7 +42,7 @@ PAYMENT_TYPE_CHOICES = (
 
 
 class Payment(PerAppModelMixin,
-              StatusModelMixin,
+              InstanceStatusModelMixin,
               TrackableModelMixin,
               UniqueIDModelMixin):
     """
