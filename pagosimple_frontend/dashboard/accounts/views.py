@@ -175,7 +175,9 @@ class AccountArchiveView(View):
             unique_id=account_unique_id
         )
 
-        account.archive_status()
+        account.archive_status(commit=False)
+        account.disable(commit=False)
+        account.save()
 
         account_url = reverse(
             'app_detail_account_detail',
