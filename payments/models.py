@@ -42,7 +42,7 @@ PAYMENT_TYPE_CHOICES = (
 
 
 class Payment(PerAppModelMixin,
-              # StatusModelMixin,
+              StatusModelMixin,
               TrackableModelMixin,
               UniqueIDModelMixin):
     """
