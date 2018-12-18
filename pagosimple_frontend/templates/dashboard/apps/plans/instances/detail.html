@@ -29,6 +29,11 @@
           <a class="btn btn-primary float-right mb-4" href="{% url 'app_detail_plan_planinstance_edit' app_unique_id=app_unique_id plan_unique_id=plan_unique_id plan_instance_unique_id=plan_instance_unique_id %}">
             EDIT SUBSCRIPTION
           </a>
+          {% if plan_instance.instance_status != 'archived' %}
+          <a class="btn btn-outline-warning float-right mb-4 mr-4" href="{% url 'app_detail_plan_planinstance_archive' app_unique_id=app_unique_id plan_unique_id=plan_unique_id plan_instance_unique_id=plan_instance_unique_id %}">
+            ARCHIVE
+          </a>
+          {% endif %}
         </div>
       </div>
 
