@@ -28,6 +28,7 @@ from .dashboard.plans.views import (
     # PlanInstance model views
     PlanInstanceDetailView,
     PlanInstanceEditView,
+    PlanInstanceArchiveView,
     PlanInstanceCreateView,
 )
 
@@ -125,6 +126,11 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/subscriptions/<uuid:plan_instance_unique_id>/edit',
         PlanInstanceEditView.as_view(),
         name='app_detail_plan_planinstance_edit'
+    ),
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/subscriptions/<uuid:plan_instance_unique_id>/archive',
+        PlanInstanceArchiveView.as_view(),
+        name='app_detail_plan_planinstance_archive'
     ),
     path(
         'dashboard/apps/<uuid:app_unique_id>/plans/<uuid:plan_unique_id>/subscriptions/new',

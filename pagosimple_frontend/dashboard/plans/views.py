@@ -3,8 +3,9 @@
 import logging
 from django.http import (
     HttpResponse,
-    # HttpResponseRedirect,
+    HttpResponseRedirect,
 )
+from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.urls import reverse
 from django.views import View
@@ -335,3 +336,30 @@ class PlanInstanceCreateView(CreateView):
         initial_data['active'] = True
 
         return initial_data
+
+
+class PlanInstanceArchiveView(View):
+
+    def get(self, request, app_unique_id, plan_unique_id, plan_instance_unique_id):
+
+        plan_instance = get_object_or_404(
+            PlanInstance,
+            unique_id=plan_instance_unique_id
+        )
+
+        plan_instance.archive_instance(commit=False)
+        plan_instance.deactivate(commit=False)
+
+        plan_instance.save()
+
+        plan_detail_url = reverse(
+            'app_detail_plan_detail',
+            kwargs={
+                'app_unique_id': app_unique_id,
+                'plan_unique_id': plan_unique_id,
+            }
+        )
+
+        return HttpResponseRedirect(
+            plan_detail_url
+        )
