@@ -8,6 +8,7 @@ from django.contrib.postgres.fields import (
 from rest_framework_apicontrol.mixins import (
     ActiveModelMixin,
     EnabledModelMixin,
+    InstanceStatusModelMixin,
     PerAppModelMixin,
     TrackableModelMixin,
     UniqueIDModelMixin,
@@ -111,7 +112,10 @@ class Plan(EnabledModelMixin,
         )
 
 
-class PlanInstance(ActiveModelMixin, TrackableModelMixin, UniqueIDModelMixin):
+class PlanInstance(ActiveModelMixin,
+                   InstanceStatusModelMixin,
+                   TrackableModelMixin,
+                   UniqueIDModelMixin):
     """
     Plan Instance model.
 
