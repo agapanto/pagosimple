@@ -180,10 +180,9 @@ class AccountArchiveView(View):
         account.save()
 
         account_url = reverse(
-            'app_detail_account_detail',
+            'app_detail_account_list',
             kwargs={
                 'app_unique_id': app_unique_id,
-                'account_unique_id': account_unique_id,
             }
         )
 
