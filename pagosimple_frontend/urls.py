@@ -17,6 +17,7 @@ from .dashboard.payments.views import (
     PaymentDetailView,
     PaymentCreateView,
     PaymentEditView,
+    PaymentArchiveView,
 )
 from .dashboard.plans.views import (
     # Plan model views
@@ -87,6 +88,11 @@ urlpatterns = [
         'dashboard/apps/<uuid:app_unique_id>/payments/<uuid:payment_unique_id>/edit',
         PaymentEditView.as_view(),
         name='app_detail_payments_edit'
+    ),
+    path(
+        'dashboard/apps/<uuid:app_unique_id>/payments/<uuid:payment_unique_id>/archive',
+        PaymentArchiveView.as_view(),
+        name='app_detail_payments_archive'
     ),
     # Plan model views
     path(

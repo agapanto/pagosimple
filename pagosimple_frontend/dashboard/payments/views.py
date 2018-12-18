@@ -3,8 +3,9 @@
 import logging
 from django.http import (
     HttpResponse,
-    # HttpResponseRedirect,
+    HttpResponseRedirect,
 )
+from django.shortcuts import get_object_or_404
 from django.template import loader
 from django.urls import reverse
 from django.views import View
@@ -161,3 +162,28 @@ class PaymentEditView(UpdateView):
         )
 
         return success_url
+
+
+class PaymentArchiveView(View):
+
+    def get(self, request, app_unique_id, payment_unique_id):
+
+        payment = get_object_or_404(
+            Payment,
+            unique_id=payment_unique_id
+        )
+
+        payment.archive_instance(commit=False)
+        # payment.disable(commit=False)
+        payment.save()
+
+        payment_list_url = reverse(
+            'app_detail_payments_list',
+            kwargs={
+                'app_unique_id': app_unique_id,
+            }
+        )
+
+        return HttpResponseRedirect(
+            payment_list_url
+        )
